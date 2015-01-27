@@ -1,0 +1,26 @@
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.ConsoleApplication\obj\x86\Debug\Sample.ConsoleApplication.csprojResolveAssemblyReference.cache
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.ConsoleApplication\bin\Debug\ConsoleApplication.exe
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.ConsoleApplication\bin\Debug\ConsoleApplication.pdb
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.ConsoleApplication\bin\Debug\PAARC.ServerCommunication.dll
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.ConsoleApplication\bin\Debug\PAARC.Shared.dll
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.ConsoleApplication\bin\Debug\NLog.dll
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.ConsoleApplication\bin\Debug\PAARC.ServerCommunication.pdb
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.ConsoleApplication\bin\Debug\PAARC.ServerCommunication.xml
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.ConsoleApplication\bin\Debug\PAARC.Shared.pdb
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.ConsoleApplication\bin\Debug\PAARC.Shared.xml
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.ConsoleApplication\bin\Debug\NLog.xml
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.ConsoleApplication\obj\x86\Debug\ConsoleApplication.exe
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.ConsoleApplication\obj\x86\Debug\ConsoleApplication.pdb
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\Sample.ConsoleApplication\bin\Debug\ConsoleApplication.exe
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\Sample.ConsoleApplication\bin\Debug\ConsoleApplication.pdb
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\Sample.ConsoleApplication\bin\Debug\PAARC.ServerCommunication.dll
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\Sample.ConsoleApplication\bin\Debug\PAARC.Shared.dll
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\Sample.ConsoleApplication\bin\Debug\NLog.dll
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\Sample.ConsoleApplication\bin\Debug\PAARC.ServerCommunication.pdb
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\Sample.ConsoleApplication\bin\Debug\PAARC.ServerCommunication.xml
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\Sample.ConsoleApplication\bin\Debug\PAARC.Shared.pdb
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\Sample.ConsoleApplication\bin\Debug\PAARC.Shared.xml
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\Sample.ConsoleApplication\bin\Debug\NLog.xml
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\Sample.ConsoleApplication\obj\x86\Debug\Sample.ConsoleApplication.csprojResolveAssemblyReference.cache
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\Sample.ConsoleApplication\obj\x86\Debug\ConsoleApplication.exe
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\Sample.ConsoleApplication\obj\x86\Debug\ConsoleApplication.pdb

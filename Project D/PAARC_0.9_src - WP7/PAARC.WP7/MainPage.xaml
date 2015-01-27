@@ -1,0 +1,147 @@
+﻿<views:NavigationPhoneApplicationPage xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                      xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                                      xmlns:viewModels="clr-namespace:PAARC.WP7.ViewModels"
+                                      xmlns:views="clr-namespace:PAARC.WP7.Views"
+                                      xmlns:local="clr-namespace:PAARC.WP7"
+                                      x:Class="PAARC.WP7.MainPage"
+                                      mc:Ignorable="d"
+                                      d:DesignWidth="800"
+                                      d:DesignHeight="480"
+                                      FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                                      FontSize="{StaticResource PhoneFontSizeNormal}"
+                                      Foreground="{StaticResource PhoneForegroundBrush}"
+                                      SupportedOrientations="Portrait"
+                                      Orientation="Portrait"
+                                      shell:SystemTray.IsVisible="False">
+
+    <views:NavigationPhoneApplicationPage.DataContext>
+        <viewModels:MainPageViewModel />
+    </views:NavigationPhoneApplicationPage.DataContext>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot"
+          Background="#FF1BA1E2">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel"
+                    Grid.Row="0"
+                    Margin="12,17,0,28">
+            <TextBlock x:Name="ApplicationTitle"
+                       Text="PHONE AS A REMOTE CONTROL"
+                       Style="{StaticResource PhoneTextNormalStyle}" />
+            <StackPanel Orientation="Horizontal">
+                <TextBlock x:Name="PageTitle"
+                           Text="paarc"
+                           Margin="9,-7,0,0"
+                           Style="{StaticResource PhoneTextTitle1Style}" />
+                <Image VerticalAlignment="Bottom"
+                       Source="/Content/Images/Title_Icon.png"
+                       Stretch="None" />
+            </StackPanel>
+
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel"
+              Grid.Row="1"
+              Margin="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Button x:Name="ConnectAutomatically"
+                    Width="400"
+                    Content="Auto Connect"
+                    Command="{Binding ConnectCommand}"
+                    IsEnabled="{Binding CanConnect}"
+                    Margin="0"
+                    HorizontalAlignment="Center"
+                    Grid.ColumnSpan="2" />
+            <StackPanel VerticalAlignment="Top"
+                        Grid.Row="1">
+                <Button x:Name="AdvancedOptionsButton"
+                        Click="AdvancedOptionsButton_Click"
+                        Content="Show advanced options"
+                        HorizontalAlignment="Center"
+                        Width="400" />
+                <Grid x:Name="AdvancedOptionsPanel"
+                      Height="99"
+                      Margin="10,0"
+                      Visibility="Collapsed">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Connect to an IP address manually:"
+                               VerticalAlignment="Center"
+                               Margin="0"
+                               TextWrapping="Wrap"
+                               Foreground="White"
+                               Grid.ColumnSpan="2"
+                               HorizontalAlignment="Center" />
+                    <TextBox x:Name="ServerIPAddress"
+                             Text="{Binding ServerIPAddress, Mode=TwoWay}"
+                             d:LayoutOverrides="Height"
+                             Margin="0"
+                             Grid.Row="1">
+                        <TextBox.InputScope>
+                            <InputScope>
+                                <InputScopeName NameValue="Number" />
+                            </InputScope>
+                        </TextBox.InputScope>
+                    </TextBox>
+                    <Button x:Name="ConnectManually"
+                            Content="Go!"
+                            Command="{Binding ConnectToAddressCommand}"
+                            IsEnabled="{Binding CanConnect}"
+                            d:LayoutOverrides="Height"
+                            HorizontalAlignment="Right"
+                            Margin="0"
+                            Grid.Column="1"
+                            Grid.Row="1"
+                            Width="150" />
+                </Grid>
+            </StackPanel>
+            <local:LightIndicator VerticalAlignment="Top"
+                                  IsOn="{Binding CanConnect}"
+                                  OnDescription="Network available"
+                                  OffDescription="No suitable network"
+                                  Margin="3"
+                                  Grid.Column="1"
+                                  d:LayoutOverrides="Width"
+                                  Grid.Row="2"
+                                  HorizontalAlignment="Right" />
+
+        </Grid>
+    </Grid>
+
+    <!--Sample code showing usage of ApplicationBar-->
+    <views:NavigationPhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True"
+                              IsMenuEnabled="False">
+            <shell:ApplicationBarIconButton IconUri="/Content/Images/appbar.questionmark.rest.png"
+                                            Click="ApplicationBarHelpButton_Click"
+                                            Text="help" />
+            <shell:ApplicationBarIconButton IconUri="/Content/Images/appbar.feature.settings.rest.png"
+                                            Click="ApplicationBarSettingsButton_Click"
+                                            Text="settings" />
+        </shell:ApplicationBar>
+    </views:NavigationPhoneApplicationPage.ApplicationBar>
+
+</views:NavigationPhoneApplicationPage>

@@ -1,0 +1,44 @@
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.CubeSample\obj\x86\Debug\MainWindow.g.cs
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.CubeSample\obj\x86\Debug\App.g.cs
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.CubeSample\obj\x86\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.CubeSample\obj\x86\Debug\Cube_MarkupCompile.cache
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.CubeSample\obj\x86\Debug\Cube_MarkupCompile.lref
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.CubeSample\obj\x86\Debug\Sample.Cube.csprojResolveAssemblyReference.cache
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.CubeSample\bin\Debug\Cube.exe
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.CubeSample\bin\Debug\Cube.pdb
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.CubeSample\bin\Debug\PAARC.ServerCommunication.dll
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.CubeSample\bin\Debug\PAARC.Shared.dll
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.CubeSample\bin\Debug\NLog.dll
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.CubeSample\bin\Debug\PAARC.ServerCommunication.pdb
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.CubeSample\bin\Debug\PAARC.ServerCommunication.xml
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.CubeSample\bin\Debug\PAARC.Shared.pdb
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.CubeSample\bin\Debug\PAARC.Shared.xml
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.CubeSample\bin\Debug\NLog.xml
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.CubeSample\obj\x86\Debug\MainWindow.baml
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.CubeSample\obj\x86\Debug\Cube.g.resources
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.CubeSample\obj\x86\Debug\Cube.Properties.Resources.resources
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.CubeSample\obj\x86\Debug\Sample.Cube.csproj.GenerateResource.Cache
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.CubeSample\obj\x86\Debug\Cube.exe
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.CubeSample\obj\x86\Debug\Cube.pdb
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\Sample.CubeSample\obj\x86\Debug\Cube.exe
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\Sample.CubeSample\obj\x86\Debug\Cube.pdb
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\Sample.CubeSample\bin\Debug\Cube.exe
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\Sample.CubeSample\bin\Debug\Cube.pdb
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\Sample.CubeSample\bin\Debug\PAARC.ServerCommunication.dll
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\Sample.CubeSample\bin\Debug\PAARC.Shared.dll
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\Sample.CubeSample\bin\Debug\NLog.dll
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\Sample.CubeSample\bin\Debug\PAARC.ServerCommunication.pdb
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\Sample.CubeSample\bin\Debug\PAARC.ServerCommunication.xml
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\Sample.CubeSample\bin\Debug\PAARC.Shared.pdb
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\Sample.CubeSample\bin\Debug\PAARC.Shared.xml
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\Sample.CubeSample\bin\Debug\NLog.xml
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\Sample.CubeSample\obj\x86\Debug\Sample.Cube.csprojResolveAssemblyReference.cache
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\Sample.CubeSample\obj\x86\Debug\MainWindow.g.cs
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\Sample.CubeSample\obj\x86\Debug\App.g.cs
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\Sample.CubeSample\obj\x86\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\Sample.CubeSample\obj\x86\Debug\Cube_MarkupCompile.cache
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\Sample.CubeSample\obj\x86\Debug\Cube_MarkupCompile.lref
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\Sample.CubeSample\obj\x86\Debug\MainWindow.baml
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\Sample.CubeSample\obj\x86\Debug\Cube.g.resources
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\Sample.CubeSample\obj\x86\Debug\Cube.Properties.Resources.resources
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\Sample.CubeSample\obj\x86\Debug\Sample.Cube.csproj.GenerateResource.Cache

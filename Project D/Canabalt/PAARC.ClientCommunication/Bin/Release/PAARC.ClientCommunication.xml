@@ -1,0 +1,473 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PAARC.ClientCommunication</name>
+    </assembly>
+    <members>
+        <member name="T:PAARC.Communication.Channels.ControlChannel">
+            <summary>
+            This is an implementation of the <c>IControlChannel</c> interface.
+            </summary>
+        </member>
+        <member name="T:PAARC.Communication.Channels.ChannelBase">
+            <summary>
+            An implementation of the <c>IChannel</c> interface that is used as base class for the actual channels.
+            </summary>
+        </member>
+        <member name="M:PAARC.Communication.Channels.ChannelBase.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.Communication.Channels.ChannelBase"/> class.
+            </summary>
+        </member>
+        <member name="M:PAARC.Communication.Channels.ChannelBase.#ctor(PAARC.Shared.ICommunicationFactory)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.Communication.Channels.ChannelBase"/> class using the given communication factory implementation.
+            </summary>
+            <param name="communicationFactory">The communication factory that is used to create the actual communication objects.</param>
+        </member>
+        <member name="M:PAARC.Communication.Channels.ChannelBase.ConnectAsync(System.String,System.Int32)">
+            <summary>
+            Starts asynchronously connecting to a remote server.
+            </summary>
+            <param name="remoteAddress">The remote address to connect to.</param>
+            <param name="remotePort">The remote port to use.</param>
+        </member>
+        <member name="M:PAARC.Communication.Channels.ChannelBase.Shutdown">
+            <summary>
+            Shuts down the channel.
+            </summary>
+        </member>
+        <member name="M:PAARC.Communication.Channels.ChannelBase.OnCleaningUp">
+            <summary>
+            Hook for derived classes to do their own cleaning.
+            </summary>
+        </member>
+        <member name="M:PAARC.Communication.Channels.ChannelBase.ListenAsync(System.String,System.Int32)">
+            <summary>
+            This method is not supported on the phone and throws a <c>NotSupportedException</c> when it's used.
+            </summary>
+        </member>
+        <member name="P:PAARC.Communication.Channels.ChannelBase.CommunicationFactory">
+            <summary>
+            Gets the communication factory that is used to create the actual communication objects.
+            </summary>
+        </member>
+        <member name="P:PAARC.Communication.Channels.ChannelBase.Socket">
+            <summary>
+            Gets the TCP socket wrapper.
+            </summary>
+        </member>
+        <member name="P:PAARC.Communication.Channels.ChannelBase.LocalEndpoint">
+            <summary>
+            Gets the local endpoint used for the channel.
+            </summary>
+        </member>
+        <member name="P:PAARC.Communication.Channels.ChannelBase.IsConnected">
+            <summary>
+            Gets a value indicating whether the channel is connected.
+            </summary>
+        </member>
+        <member name="E:PAARC.Communication.Channels.ChannelBase.Connected">
+            <summary>
+            Occurs when the channel was successfully connected to a server.
+            </summary>
+        </member>
+        <member name="E:PAARC.Communication.Channels.ChannelBase.ConnectionClosed">
+            <summary>
+            Occurs when the underlying connection was closed.
+            </summary>
+        </member>
+        <member name="E:PAARC.Communication.Channels.ChannelBase.ClientAccepted">
+            <summary>
+            Occurs when a client was accepted by the channel.
+            </summary>
+        </member>
+        <member name="E:PAARC.Communication.Channels.ChannelBase.Error">
+            <summary>
+            Occurs in case of an error during communication.
+            </summary>
+        </member>
+        <member name="M:PAARC.Communication.Channels.ControlChannel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.Communication.Channels.ControlChannel"/> class.
+            </summary>
+        </member>
+        <member name="M:PAARC.Communication.Channels.ControlChannel.#ctor(PAARC.Shared.ICommunicationFactory)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.Communication.Channels.ControlChannel"/> class using the given communication factory.
+            </summary>
+            <param name="communicationFactory">The communication factory used to create the actual communication objects.</param>
+        </member>
+        <member name="M:PAARC.Communication.Channels.ControlChannel.Send(PAARC.Shared.ControlCommands.IControlCommand)">
+            <summary>
+            This method is not supported on the phone and throws a <c>NotSupportedException</c> when it's used.
+            </summary>
+        </member>
+        <member name="E:PAARC.Communication.Channels.ControlChannel.ControlCommandSent">
+            <summary>
+            Occurs when a control command was successfully sent from the server to the client, on the server side.
+            </summary>
+        </member>
+        <member name="E:PAARC.Communication.Channels.ControlChannel.ControlCommandReceived">
+            <summary>
+            Occurs when a control command was successfully received, on the client side.
+            </summary>
+        </member>
+        <member name="T:PAARC.Communication.Helpers.EndPointHelper">
+            <summary>
+            Helper functions to parse string IP address data.
+            </summary>
+        </member>
+        <member name="M:PAARC.Communication.Helpers.EndPointHelper.ParseEndPoint(System.String,System.Int32)">
+            <summary>
+            Parses the given string representation of an IP address and returns a strongly typed <c>IPEndPoint</c>.
+            </summary>
+            <param name="address">The address to parse.</param>
+            <param name="port">The port to use for the endpoint.</param>
+            <returns>An <c>IPEndPoint</c> instance that contains the data passed in as arguments.</returns>
+        </member>
+        <member name="T:PAARC.Communication.PhoneControllerClient">
+            <summary>
+            An implementation of the phone controller client side.
+            </summary>
+        </member>
+        <member name="M:PAARC.Communication.PhoneControllerClient.#ctor(PAARC.Shared.Data.IDataSource)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.Communication.PhoneControllerClient"/> class using the given data source.
+            </summary>
+            <param name="dataSource">The data source used to acquire data.</param>
+        </member>
+        <member name="M:PAARC.Communication.PhoneControllerClient.#ctor(PAARC.Shared.Data.IDataSource,PAARC.Shared.ICommunicationFactory)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.Communication.PhoneControllerClient"/> class.
+            </summary>
+            <param name="dataSource">The data source used to acquire data.</param>
+            <param name="communicationFactory">The communication factory used to create the actual communication objects.</param>
+        </member>
+        <member name="M:PAARC.Communication.PhoneControllerClient.ConnectAsync">
+            <summary>
+            Asynchronously connects to a controller server, using multicast broadcasting to discover that server on the same network.
+            </summary>
+        </member>
+        <member name="M:PAARC.Communication.PhoneControllerClient.ConnectAsync(System.Net.IPAddress)">
+            <summary>
+            Asynchronously connects to a server using the given server address.
+            </summary>
+            <param name="ipAddress">The IP address of the server to connect to.</param>
+        </member>
+        <member name="M:PAARC.Communication.PhoneControllerClient.Configure(PAARC.Shared.ControllerConfiguration)">
+            <summary>
+            Configures the controller using the given configuration.
+            </summary>
+            <param name="controllerConfiguration">The controller configuration used for configuration.</param>
+        </member>
+        <member name="M:PAARC.Communication.PhoneControllerClient.Shutdown">
+            <summary>
+            Shuts down the controller. After a successful shutdown, the controller transitions to the <c>Closed</c>
+            state and can be re-initialized later (e.g. re-connected by using the respective <c>ConnectAsync</c> methods).
+            </summary>
+        </member>
+        <member name="P:PAARC.Communication.PhoneControllerClient.State">
+            <summary>
+            Gets the current state of the phone controller.
+            </summary>
+        </member>
+        <member name="P:PAARC.Communication.PhoneControllerClient.Configuration">
+            <summary>
+            Gets the current configuration of the phone controller.
+            </summary>
+        </member>
+        <member name="P:PAARC.Communication.PhoneControllerClient.ServerAddress">
+            <summary>
+            Gets the address of the server the controller is connected to, if applicable.
+            </summary>
+        </member>
+        <member name="P:PAARC.Communication.PhoneControllerClient.DataSource">
+            <summary>
+            Gets the data source used by the controller to acquire data.
+            </summary>
+        </member>
+        <member name="E:PAARC.Communication.PhoneControllerClient.StateChanged">
+            <summary>
+            Raised when the current state of the controller has changed.
+            </summary>
+            <remarks>
+            This event is guaranteed to be raised on the synchronization context of the thread that created the controller.
+            </remarks>
+        </member>
+        <member name="E:PAARC.Communication.PhoneControllerClient.ConfigurationChanged">
+            <summary>
+            Raised when the current configuration of the controller has changed.
+            </summary>
+            <remarks>
+            This event is guaranteed to be raised on the synchronization context of the thread that created the controller.
+            </remarks>
+        </member>
+        <member name="E:PAARC.Communication.PhoneControllerClient.Error">
+            <summary>
+            Raised when any kind of error occurred.
+            </summary>
+            <remarks>
+            This event is guaranteed to be raised on the synchronization context of the thread that created the controller.
+            </remarks>
+        </member>
+        <member name="T:PAARC.Communication.Channels.DataChannel">
+            <summary>
+            This is an implementation of the <c>IDataChannel</c> interface.
+            </summary>
+        </member>
+        <member name="M:PAARC.Communication.Channels.DataChannel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.Communication.Channels.DataChannel"/> class.
+            </summary>
+        </member>
+        <member name="M:PAARC.Communication.Channels.DataChannel.#ctor(PAARC.Shared.ICommunicationFactory)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.Communication.Channels.DataChannel"/> class using the given communication factory.
+            </summary>
+            <param name="communicationFactory">The communication factory that is used to create the actual communication objects.</param>
+        </member>
+        <member name="M:PAARC.Communication.Channels.DataChannel.Send(PAARC.Shared.Data.IDataMessage)">
+            <summary>
+            Sends the specified data message to the server.
+            </summary>
+            <param name="data">The data message to send.</param>
+        </member>
+        <member name="M:PAARC.Communication.Channels.DataChannel.PurgeFromQueue(PAARC.Shared.DataType)">
+            <summary>
+            Purges a specific type of data messages from the send queue.
+            </summary>
+            <param name="dataType">The type of the data to purge from the send queue.</param>
+        </member>
+        <member name="E:PAARC.Communication.Channels.DataChannel.DataMessageReceived">
+            <summary>
+            Occurs when a data message was successfully received, on the server side.
+            </summary>
+        </member>
+        <member name="P:PAARC.Communication.Channels.DataChannel.MinMillisecondsBetweenMessages">
+            <summary>
+            Gets or sets the minimum number of milliseconds between messages.
+            Messages are delayed by the amount given here if necessary.
+            </summary>
+            <value>
+            The minimum number of milliseconds between messages.
+            </value>
+        </member>
+        <member name="T:PAARC.Communication.DefaultCommunicationFactory">
+            <summary>
+            A default implementation of the <c>ICommunicationFactory</c> interface used for production.
+            </summary>
+        </member>
+        <member name="M:PAARC.Communication.DefaultCommunicationFactory.CreateTcpSocket">
+            <summary>
+            Creates a TCP socket wrapper implementation.
+            </summary>
+            <returns>
+            An implementation of the TCP socket wrapper interface.
+            </returns>
+        </member>
+        <member name="M:PAARC.Communication.DefaultCommunicationFactory.CreateUdpSocket">
+            <summary>
+            Creates a UDP socket wrapper implementation.
+            </summary>
+            <returns>
+            An implementation of the UDP socket wrapper interface.
+            </returns>
+        </member>
+        <member name="M:PAARC.Communication.DefaultCommunicationFactory.CreateDataChannel">
+            <summary>
+            Creates a data channel implementation.
+            </summary>
+            <returns>
+            An implementation of the data channel interface.
+            </returns>
+        </member>
+        <member name="M:PAARC.Communication.DefaultCommunicationFactory.CreateControlChannel">
+            <summary>
+            Creates a control channel implementation.
+            </summary>
+            <returns>
+            An implementation of the control channel interface.
+            </returns>
+        </member>
+        <member name="T:PAARC.Communication.Sockets.TcpSocketWrapper">
+            <summary>
+            An implementation of the <c>ITcpSocketWrapper</c> interface.
+            </summary>
+        </member>
+        <member name="M:PAARC.Communication.Sockets.TcpSocketWrapper.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.Communication.Sockets.TcpSocketWrapper"/> class.
+            </summary>
+        </member>
+        <member name="M:PAARC.Communication.Sockets.TcpSocketWrapper.ConnectAsync(System.String,System.Int32)">
+            <summary>
+            Starts an asynchronous connect operation to connect to a remote server.
+            </summary>
+            <param name="remoteAddress">The remote address to connect to.</param>
+            <param name="remotePort">The remote port to use during the connection attempt.</param>
+        </member>
+        <member name="M:PAARC.Communication.Sockets.TcpSocketWrapper.Shutdown">
+            <summary>
+            Shuts down the socket.
+            </summary>
+        </member>
+        <member name="M:PAARC.Communication.Sockets.TcpSocketWrapper.ReceiveAsync">
+            <summary>
+            Starts an asynchronous receive operation.
+            </summary>
+        </member>
+        <member name="M:PAARC.Communication.Sockets.TcpSocketWrapper.SendAsync(System.Byte[])">
+            <summary>
+            Starts an asynchronous send operations
+            </summary>
+            <param name="data">The data that should be sent.</param>
+        </member>
+        <member name="M:PAARC.Communication.Sockets.TcpSocketWrapper.ListenAsync(System.String,System.Int32)">
+            <summary>
+            This method is not supported on the phone and throws a <c>NotSupportedException</c> when it's used.
+            </summary>
+        </member>
+        <member name="P:PAARC.Communication.Sockets.TcpSocketWrapper.IsConnected">
+            <summary>
+            Gets a value indicating whether the socket is connected.
+            </summary>
+            <value>
+              <c>true</c> if the socket is connected; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="E:PAARC.Communication.Sockets.TcpSocketWrapper.Connected">
+            <summary>
+            Occurs when the socket was connected successfully.
+            </summary>
+        </member>
+        <member name="E:PAARC.Communication.Sockets.TcpSocketWrapper.ConnectionClosed">
+            <summary>
+            Occurs when the connection was closed successfully.
+            </summary>
+        </member>
+        <member name="E:PAARC.Communication.Sockets.TcpSocketWrapper.ClientAccepted">
+            <summary>
+            Occurs when a client was accepted successfully.
+            </summary>
+        </member>
+        <member name="E:PAARC.Communication.Sockets.TcpSocketWrapper.DataSent">
+            <summary>
+            Occurs when data was sent successfully.
+            </summary>
+        </member>
+        <member name="E:PAARC.Communication.Sockets.TcpSocketWrapper.DataReceived">
+            <summary>
+            Occurs when data was received successfully.
+            </summary>
+        </member>
+        <member name="E:PAARC.Communication.Sockets.TcpSocketWrapper.Error">
+            <summary>
+            Occurs in any case of network errors.
+            </summary>
+        </member>
+        <member name="T:PAARC.Communication.Sockets.UdpSocketWrapper">
+            <summary>
+            An implementation of the <c>IUdpSocketWrapper</c> interface.
+            </summary>
+        </member>
+        <member name="M:PAARC.Communication.Sockets.UdpSocketWrapper.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.Communication.Sockets.UdpSocketWrapper"/> class.
+            </summary>
+        </member>
+        <member name="M:PAARC.Communication.Sockets.UdpSocketWrapper.Initialize(System.String,System.Int32,System.String,System.Int32)">
+            <summary>
+            Initializes the wrapper with a set of local and remote endpoint data.
+            </summary>
+            <param name="localAddress">The local address to use for receive operations.</param>
+            <param name="localPort">The local port to use for receive operations.</param>
+            <param name="remoteAddress">The remote address to use for send operations.</param>
+            <param name="remotePort">The remote port to use for send operations.</param>
+        </member>
+        <member name="M:PAARC.Communication.Sockets.UdpSocketWrapper.Shutdown">
+            <summary>
+            Shuts down the socket and cleans up resources.
+            </summary>
+        </member>
+        <member name="M:PAARC.Communication.Sockets.UdpSocketWrapper.ReceiveFromAsync">
+            <summary>
+            Starts an asynchronous receive operation.
+            </summary>
+        </member>
+        <member name="M:PAARC.Communication.Sockets.UdpSocketWrapper.SendToAsync(System.Byte[])">
+            <summary>
+            Starts an asynchronous send operation.
+            </summary>
+            <param name="data">The data that should be sent.</param>
+        </member>
+        <member name="E:PAARC.Communication.Sockets.UdpSocketWrapper.DataSent">
+            <summary>
+            Occurs when data was sent successfully.
+            Due to the nature of UDP, this does not mean that the data was successfully received on the other end.
+            </summary>
+        </member>
+        <member name="E:PAARC.Communication.Sockets.UdpSocketWrapper.DataReceived">
+            <summary>
+            Occurs when data was received successfully.
+            </summary>
+        </member>
+        <member name="E:PAARC.Communication.Sockets.UdpSocketWrapper.Error">
+            <summary>
+            Occurs in any case of network errors.
+            </summary>
+        </member>
+        <member name="T:PAARC.Communication.LoggingConfigurator">
+            <summary>
+            Configures logging and tracing using NLog's <c>LogManager</c>.
+            </summary>
+        </member>
+        <member name="M:PAARC.Communication.LoggingConfigurator.Configure(PAARC.Shared.ControllerConfiguration)">
+            <summary>
+            Configures the logging and tracing using the given controller configuration.
+            </summary>
+            <param name="controllerConfiguration">The controller configuration.</param>
+        </member>
+        <member name="T:PAARC.Communication.Sockets.MulticastClient">
+            <summary>
+            A multicast client used to broadcast to discover servers on the same network.
+            </summary>
+        </member>
+        <member name="M:PAARC.Communication.Sockets.MulticastClient.DiscoverServer">
+            <summary>
+            Starts discovery of servers on the same network.
+            </summary>
+        </member>
+        <member name="M:PAARC.Communication.Sockets.MulticastClient.Shutdown">
+            <summary>
+            Shuts down the multicast client.
+            </summary>
+        </member>
+        <member name="M:PAARC.Communication.Sockets.MulticastClient.Join">
+            <summary>
+            Create a new UdpAnySourceMulticastClient instance and join the group.
+            </summary>
+        </member>
+        <member name="M:PAARC.Communication.Sockets.MulticastClient.Send(System.String)">
+            <summary>
+            Send the given message to the multicast group.
+            </summary>
+            <param name="message">The message to send</param>
+        </member>
+        <member name="M:PAARC.Communication.Sockets.MulticastClient.Receive">
+            <summary>
+            Receive data from the group and log it.
+            </summary>
+        </member>
+        <member name="E:PAARC.Communication.Sockets.MulticastClient.ServerDiscovered">
+            <summary>
+            Occurs when a server has been discovered.
+            </summary>
+        </member>
+        <member name="E:PAARC.Communication.Sockets.MulticastClient.TimeoutElapsed">
+            <summary>
+            Occurs when a timeout has been detected.
+            </summary>
+        </member>
+    </members>
+</doc>

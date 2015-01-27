@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
+  <Asset Type="Pipeline:BuildItemCollection">
+    <Item>
+      <Source>btnHelp.png</Source>
+      <Name>btnHelp</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Codinpsycho\Desktop\Project D\samples\InputToyWP7_4_0\InputToyWP7\bin\Windows Phone\Debug\Content\btnHelp.xnb</Output>
+      <Time>2010-08-26T13:57:46+05:30</Time>
+    </Item>
+    <Item>
+      <Source>btnPause.png</Source>
+      <Name>btnPause</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Codinpsycho\Desktop\Project D\samples\InputToyWP7_4_0\InputToyWP7\bin\Windows Phone\Debug\Content\btnPause.xnb</Output>
+      <Time>2010-08-26T13:57:46+05:30</Time>
+    </Item>
+    <Item>
+      <Source>btnPlay.png</Source>
+      <Name>btnPlay</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Codinpsycho\Desktop\Project D\samples\InputToyWP7_4_0\InputToyWP7\bin\Windows Phone\Debug\Content\btnPlay.xnb</Output>
+      <Time>2010-08-26T13:57:46+05:30</Time>
+    </Item>
+    <Item>
+      <Source>Flare.png</Source>
+      <Name>Flare</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Codinpsycho\Desktop\Project D\samples\InputToyWP7_4_0\InputToyWP7\bin\Windows Phone\Debug\Content\Flare.xnb</Output>
+      <Time>2010-08-26T13:57:46+05:30</Time>
+    </Item>
+    <Item>
+      <Source>Instructions.png</Source>
+      <Name>Instructions</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Codinpsycho\Desktop\Project D\samples\InputToyWP7_4_0\InputToyWP7\bin\Windows Phone\Debug\Content\Instructions.xnb</Output>
+      <Time>2010-08-26T13:57:46+05:30</Time>
+    </Item>
+    <BuildSuccessful>true</BuildSuccessful>
+    <Settings>
+      <ContentProjectGUID>{68A5B80C-0F98-4AB9-A96D-E79420E4147D}</ContentProjectGUID>
+      <TargetPlatform>WindowsPhone</TargetPlatform>
+      <TargetProfile>Reach</TargetProfile>
+      <BuildConfiguration>Debug</BuildConfiguration>
+      <CompressContent>false</CompressContent>
+      <RootDirectory>C:\Users\Codinpsycho\Desktop\Project D\samples\InputToyWP7_4_0\InputToyWP7Content\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Codinpsycho\Desktop\Project D\samples\InputToyWP7_4_0\InputToyWP7\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Codinpsycho\Desktop\Project D\samples\InputToyWP7_4_0\InputToyWP7\obj\Windows Phone\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Codinpsycho\Desktop\Project D\samples\InputToyWP7_4_0\InputToyWP7\bin\Windows Phone\Debug\Content\</OutputDirectory>
+    </Settings>
+    <Assemblies>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Value>2011-09-01T16:22:30+05:30</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Value>2011-09-01T16:22:30+05:30</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Value>2011-09-01T16:22:30+05:30</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Value>2011-09-01T16:22:30+05:30</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Value>2011-09-01T16:22:30+05:30</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Value>2011-09-01T16:22:30+05:30</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2015-01-10T19:13:40.1399166+05:30</Value>
+      </Assembly>
+    </Assemblies>
+  </Asset>
+</XnaContent>

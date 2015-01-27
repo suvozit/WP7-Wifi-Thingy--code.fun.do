@@ -1,0 +1,125 @@
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:Sample.LogService"
+        xmlns:extToolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
+        x:Class="Sample.LogService.MainWindow"
+        Title="MainWindow"
+        Height="768"
+        Width="1024"
+        MinWidth="800"
+        MinHeight="600">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.ColumnSpan="2"
+                        Orientation="Horizontal"
+                        Margin="5">
+                <TextBlock TextWrapping="Wrap"
+                           VerticalAlignment="Center"><Run Text="Service address:" /></TextBlock>
+                <TextBox x:Name="ServiceAddressTextBox"
+                         TextWrapping="Wrap"
+                         Text="http://[IP address]/LogService.svc"
+                         MinWidth="500"
+                         Margin="5,0,0,0" />
+                <Button x:Name="StartHostingButton"
+                        Content="Start hosting!"
+                        Click="StartHostingButton_Click"
+                        Width="100"
+                        Margin="5,0,0,0" />
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Orientation="Horizontal"
+                        Margin="5,5,0,5"
+                        Grid.Row="1">
+                <TextBlock TextWrapping="Wrap"
+                           VerticalAlignment="Center"><Run Text="Shift WP7 entries by" /></TextBlock>
+                <extToolkit:DoubleUpDown x:Name="ShiftMillisecondsUpDown"
+                                         Maximum="3600000"
+                                         Minimum="-3600000"
+                                         Margin="6,0,0,0"
+                                         Width="100" />
+                <TextBlock TextWrapping="Wrap"
+                           VerticalAlignment="Center"
+                           Margin="6,0,0,0"><Run Text="milliseconds" /></TextBlock>
+                <Button x:Name="ShiftButton"
+                        Content="Do it!"
+                        Width="75"
+                        Margin="6,0,0,0"
+                        Click="ShiftButton_Click" />
+                <Button x:Name="CalculateShiftButton"
+                        Content="Calc automatically"
+                        Width="125"
+                        Margin="6,0,0,0"
+                        Click="CalculateShiftButton_Click" />
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Right"
+                        Grid.Column="1"
+                        Orientation="Horizontal"
+                        Margin="0,5,5,5"
+                        Grid.Row="1">
+                <Button x:Name="CopyToClipboardButton"
+                        IsEnabled="False"
+                        Content="Copy to clipboard"
+                        Width="120"
+                        VerticalAlignment="Center"
+                        Click="CopyToClipboardButton_Click" />
+                <Button x:Name="ClearAllButton"
+                        Content="Clear all"
+                        Width="75"
+                        VerticalAlignment="Center"
+                        Margin="5,0,0,0"
+                        Click="ClearAllButton_Click" />
+            </StackPanel>
+
+        </Grid>
+
+        <DataGrid x:Name="LogGrid"
+                  Grid.Row="1"
+                  AutoGenerateColumns="False"
+                  ItemsSource="{Binding LogEntries.View}"
+                  LoadingRow="DataGrid_LoadingRow">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Timestamp"
+                                    Binding="{Binding CorrectedTimestamp, StringFormat=HH:mm:ss.fffff}"
+                                    FontFamily="Consolas"
+                                    FontSize="11" />
+                <DataGridTextColumn Header="Source"
+                                    Binding="{Binding ClientType}"
+                                    FontFamily="Consolas"
+                                    FontSize="11" />
+                <DataGridTextColumn Header="Thread"
+                                    Binding="{Binding ThreadId}"
+                                    FontFamily="Consolas"
+                                    FontSize="11" />
+                <DataGridTextColumn Header="Logger"
+                                    Binding="{Binding Logger}"
+                                    FontFamily="Consolas"
+                                    FontSize="11" />
+                <DataGridTextColumn Header="Message"
+                                    Binding="{Binding Message}"
+                                    FontFamily="Consolas"
+                                    FontSize="11" />
+                <DataGridTextColumn Header="Timestamp"
+                                    Binding="{Binding OriginalTimestamp, StringFormat=HH:mm:ss.fffff}"
+                                    FontFamily="Consolas"
+                                    FontSize="11" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Window>

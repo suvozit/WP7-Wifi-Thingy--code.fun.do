@@ -1,0 +1,441 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PAARC.DataAcquisition</name>
+    </assembly>
+    <members>
+        <member name="T:PAARC.DataAcquisition.SensorAcquirer`2">
+            <summary>
+            A generic base class that implements the common features of all sensor acquirers.
+            </summary>
+            <typeparam name="T">The sensor type to use, must be of type <c>SensorBase&lt;TSensorReading&gt;</c>.</typeparam>
+            <typeparam name="TSensorReading">The type of the sensor reading, must implement <c>ISensorReading</c>. It's the responsibility of
+            the derived class to choose a suitable sensor reading type for the given <c>SensorBase</c> implementation.</typeparam>
+        </member>
+        <member name="M:PAARC.DataAcquisition.SensorAcquirer`2.#ctor(System.Action{PAARC.Shared.Data.DataMessage})">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.DataAcquisition.SensorAcquirer`2"/> class.
+            </summary>
+            <param name="dataAcquiredCallback">The data acquired callback that should be invoked when new data is available.</param>
+        </member>
+        <member name="M:PAARC.DataAcquisition.SensorAcquirer`2.Start">
+            <summary>
+            Starts acquisition of data for this sensor, if the sensor is supported by the device.
+            </summary>
+        </member>
+        <member name="M:PAARC.DataAcquisition.SensorAcquirer`2.Stop">
+            <summary>
+            Stops acquisition of data for this sensor, if the sensor is supported by the device.
+            </summary>
+        </member>
+        <member name="M:PAARC.DataAcquisition.SensorAcquirer`2.CreateDataMessage(`1)">
+            <summary>
+            Creates a data message from a given reading.
+            </summary>
+            <param name="reading">The reading to use.</param>
+            <returns>A data message of the correct type that contains the data from the reading.</returns>
+        </member>
+        <member name="P:PAARC.DataAcquisition.SensorAcquirer`2.IsSupported">
+            <summary>
+            Gets a value indicating whether this type of sensor is supported.
+            </summary>
+            <value>
+            	<c>true</c> if this sensor type is supported; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:PAARC.DataAcquisition.SensorAcquirer`2.MinDataRate">
+            <summary>
+            Gets or sets the minimum data rate, in milliseconds.
+            </summary>
+            <value>
+            The minimum data rate, in milliseconds.
+            </value>
+        </member>
+        <member name="T:PAARC.DataAcquisition.CoordinateSystemHelper">
+            <summary>
+            Helper functions for coordinate system conversions between the physical and logical dimensions of the device screen.
+            </summary>
+        </member>
+        <member name="M:PAARC.DataAcquisition.CoordinateSystemHelper.AdjustLogicalAxis(PAARC.Shared.Data.Vector2,Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            Takes a vector and switches/adjusts the X and Y coordinates as required to match 
+            the logical axis alignment of the device. The result is stored in the <paramref name="result"/> argument.
+            </summary>
+            <param name="result">Contains the adjusted X and Y coordinates of the physical coordinates.</param>
+            <param name="physicalPosition">The original values, using the physical dimensions of the device screen.</param>
+        </member>
+        <member name="M:PAARC.DataAcquisition.CoordinateSystemHelper.CalculateLogicalPosition(PAARC.Shared.Data.Vector2,Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            Calculates the logical position from a given physical position, using the current device orientation.
+            </summary>
+            <param name="result">The resulting corrected values in logical space.</param>
+            <param name="physicalPosition">The original physical position.</param>
+        </member>
+        <member name="M:PAARC.DataAcquisition.CoordinateSystemHelper.IsInActiveArea(PAARC.Shared.Data.Vector2,PAARC.Shared.Data.Thickness)">
+            <summary>
+            Determines whether a given logical position is within the configured active area determined by the given input margin.
+            </summary>
+            <param name="logicalPosition">The logical position to test.</param>
+            <param name="inputMargin">The input margin to use to determine the active area.</param>
+            <returns>
+              <c>true</c> if the logical position is within the active area; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:PAARC.DataAcquisition.CoordinateSystemHelper.ProjectToActiveArea(PAARC.Shared.Data.Vector2,PAARC.Shared.Data.Thickness)">
+            <summary>
+            Projects a logical position within the active area defined by the given margin to the full logical screen dimensions.
+            The result is stored in the <paramref name="logicalPosition"/> that is passed into the method.
+            </summary>
+            <remarks>
+            Example: 
+            * The original logical horizontal position is 100
+            * The left margin is 50
+            * The right margin is 10
+            * The logical screen width is 800.
+            That means that the resulting active screen width is 800 - (50 + 10) = 740. The relative offset of the logical position
+            then is (100 - 50) / 740 ~= 0.068. The resulting projected horizontal coordinate then is 800 * 0.068 = 54.4.
+            </remarks>
+            <param name="logicalPosition">The logical position to use.</param>
+            <param name="inputMargin">The input margin that defines the active area.</param>
+        </member>
+        <member name="T:PAARC.DataAcquisition.AccelerometerAcquirer">
+            <summary>
+            A specific sensor acquirer implementation for the accelerometer sensor.
+            </summary>
+        </member>
+        <member name="M:PAARC.DataAcquisition.AccelerometerAcquirer.#ctor(System.Action{PAARC.Shared.Data.DataMessage})">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.DataAcquisition.AccelerometerAcquirer"/> class.
+            </summary>
+            <param name="dataAcquiredCallback">The data acquired callback that is invoked when a new reading is available.</param>
+        </member>
+        <member name="M:PAARC.DataAcquisition.AccelerometerAcquirer.CreateDataMessage(Microsoft.Devices.Sensors.AccelerometerReading)">
+            <summary>
+            Creates a data message from a given reading.
+            </summary>
+            <param name="reading">The reading to use.</param>
+            <returns>A data message of the correct type that contains the data from the reading.</returns>
+        </member>
+        <member name="P:PAARC.DataAcquisition.AccelerometerAcquirer.IsSupported">
+            <summary>
+            Gets a value indicating whether this type of sensor is supported.
+            </summary>
+            <value>
+            	<c>true</c> if this sensor type is supported; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:PAARC.DataAcquisition.TouchAcquirer">
+            <summary>
+            An acquirer that processes raw (multi-)touch input.
+            </summary>
+        </member>
+        <member name="T:PAARC.DataAcquisition.PeriodicAcquirerBase">
+            <summary>
+            A base class that periodically invokes actions that acquire data.
+            The benefit of using a base class for this is that a variety of actions can happen
+            on the same timer/synchronized.
+            </summary>
+        </member>
+        <member name="M:PAARC.DataAcquisition.PeriodicAcquirerBase.#cctor">
+            <summary>
+            Initializes the <see cref="T:PAARC.DataAcquisition.PeriodicAcquirerBase"/> class.
+            </summary>
+        </member>
+        <member name="M:PAARC.DataAcquisition.PeriodicAcquirerBase.Enlist(System.Action)">
+            <summary>
+            Enlists the specified action to be called periodically.
+            </summary>
+            <param name="periodicAction">The action to be called periodically.</param>
+        </member>
+        <member name="M:PAARC.DataAcquisition.PeriodicAcquirerBase.Remove(System.Action)">
+            <summary>
+            Removes the specified periodic action.
+            </summary>
+            <param name="periodicAction">The periodic action to be removed.</param>
+        </member>
+        <member name="M:PAARC.DataAcquisition.TouchAcquirer.#ctor(System.Action{PAARC.Shared.Data.DataMessage})">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.DataAcquisition.TouchAcquirer"/> class.
+            </summary>
+            <param name="dataAcquiredCallback">The data acquired callback invoked when new data has been acquired.</param>
+        </member>
+        <member name="M:PAARC.DataAcquisition.TouchAcquirer.Start(PAARC.Shared.DataType)">
+            <summary>
+            Starts acquisition of the specified data type.
+            Only data types <c>Touch</c> and <c>CustomDrag</c> are supported.
+            </summary>
+            <param name="dataType">The type of data to start acquisition for.</param>
+        </member>
+        <member name="M:PAARC.DataAcquisition.TouchAcquirer.Stop(PAARC.Shared.DataType)">
+            <summary>
+            Stops acquisition of the specified data type.
+            </summary>
+            <param name="dataType">The type of data to stop acquisition for.</param>
+        </member>
+        <member name="P:PAARC.DataAcquisition.TouchAcquirer.InputMargin">
+            <summary>
+            Gets or sets the input margin used to define the active area for touch input.
+            </summary>
+        </member>
+        <member name="T:PAARC.DataAcquisition.MotionAcquirer">
+            <summary>
+            A specific sensor acquirer implementation for the combined motion API.
+            </summary>
+        </member>
+        <member name="M:PAARC.DataAcquisition.MotionAcquirer.#ctor(System.Action{PAARC.Shared.Data.DataMessage})">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.DataAcquisition.MotionAcquirer"/> class.
+            </summary>
+            <param name="dataAcquiredCallback">The data acquired callback that is invoked when a new reading is available.</param>
+        </member>
+        <member name="M:PAARC.DataAcquisition.MotionAcquirer.CreateDataMessage(Microsoft.Devices.Sensors.MotionReading)">
+            <summary>
+            Creates a data message from a given reading.
+            </summary>
+            <param name="reading">The reading to use.</param>
+            <returns>A data message of the correct type that contains the data from the reading.</returns>
+        </member>
+        <member name="P:PAARC.DataAcquisition.MotionAcquirer.IsSupported">
+            <summary>
+            Gets a value indicating whether this type of sensor is supported.
+            </summary>
+            <value>
+            	<c>true</c> if this sensor type is supported; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:PAARC.DataAcquisition.DeviceInfo">
+            <summary>
+            A helper class that collects and exposes certain device information from a Windows Phone device.
+            For this class to be used correctly, it's <c>Initialize</c> method needs to be called once,
+            for example during the phone application's initialization.
+            </summary>
+        </member>
+        <member name="F:PAARC.DataAcquisition.DeviceInfo.Current">
+            <summary>
+            The singleton instance of the class; <c>null</c> until the <c>Initialize</c> method has been called.
+            </summary>
+        </member>
+        <member name="M:PAARC.DataAcquisition.DeviceInfo.Initialize">
+            <summary>
+            Initializes the class, and in particular the singleton instance.
+            If this method is not called from the UI thread of the application, the invocation
+            is automatically scheduled to that thread using the dispatcher.
+            </summary>
+        </member>
+        <member name="P:PAARC.DataAcquisition.DeviceInfo.Orientation">
+            <summary>
+            Gets the current device and screen orientation.
+            </summary>
+        </member>
+        <member name="P:PAARC.DataAcquisition.DeviceInfo.PhysicalScreenWidth">
+            <summary>
+            Gets the physical width of the screen. The physical width always is smaller than the physical height
+            and typically has a value of 480.0.
+            </summary>
+            <value>
+            The physical width of the screen.
+            </value>
+        </member>
+        <member name="P:PAARC.DataAcquisition.DeviceInfo.PhysicalScreenHeight">
+            <summary>
+            Gets the physical height of the screen. The physical height always is larger than the physical width
+            and typically has a value of 800.0.
+            </summary>
+            <value>
+            The physical height of the screen.
+            </value>
+        </member>
+        <member name="P:PAARC.DataAcquisition.DeviceInfo.LogicalScreenWidth">
+            <summary>
+            Gets the logical width of the screen. Since the library only supports landscape orientation,
+            this returns the value of <c>PhysicalScreenHeight</c>.
+            </summary>
+            <value>
+            The logical width of the screen.
+            </value>
+        </member>
+        <member name="P:PAARC.DataAcquisition.DeviceInfo.LogicalScreenHeight">
+            <summary>
+            Gets the logical height of the screen. Since the library only supports landscape orientation,
+            this returns the value of <c>PhysicalScreenWidth</c>.
+            </summary>
+            <value>
+            The logical height of the screen.
+            </value>
+        </member>
+        <member name="T:PAARC.DataAcquisition.GestureAcquirer">
+            <summary>
+            An acquirer that controls the acquisition of gesture data.
+            </summary>
+        </member>
+        <member name="M:PAARC.DataAcquisition.GestureAcquirer.#ctor(System.Action{PAARC.Shared.Data.DataMessage})">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.DataAcquisition.GestureAcquirer"/> class.
+            </summary>
+            <param name="dataAcquiredCallback">The data acquired callback that is invoked when new data has been acquired.</param>
+        </member>
+        <member name="M:PAARC.DataAcquisition.GestureAcquirer.Start(PAARC.Shared.DataType)">
+            <summary>
+            Starts acquisition of the specified data type, if supported.
+            </summary>
+            <param name="dataType">The type of data to start acquisition for.</param>
+        </member>
+        <member name="M:PAARC.DataAcquisition.GestureAcquirer.Stop(PAARC.Shared.DataType)">
+            <summary>
+            Stops acquisition of the specified data type.
+            </summary>
+            <param name="dataType">The type of data to stop acquisition for.</param>
+        </member>
+        <member name="P:PAARC.DataAcquisition.GestureAcquirer.InputMargin">
+            <summary>
+            Gets or sets the input margin that defines the active touch area used for data acquisition.
+            </summary>
+        </member>
+        <member name="T:PAARC.DataAcquisition.GyroscopeAcquirer">
+            <summary>
+            A specific sensor acquirer implementation for the gyroscope sensor.
+            </summary>
+        </member>
+        <member name="M:PAARC.DataAcquisition.GyroscopeAcquirer.#ctor(System.Action{PAARC.Shared.Data.DataMessage})">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.DataAcquisition.GyroscopeAcquirer"/> class.
+            </summary>
+            <param name="dataAcquiredCallback">The data acquired callback that is invoked when a new reading is available.</param>
+        </member>
+        <member name="M:PAARC.DataAcquisition.GyroscopeAcquirer.CreateDataMessage(Microsoft.Devices.Sensors.GyroscopeReading)">
+            <summary>
+            Creates a data message from a given reading.
+            </summary>
+            <param name="reading">The reading to use.</param>
+            <returns>A data message of the correct type that contains the data from the reading.</returns>
+        </member>
+        <member name="P:PAARC.DataAcquisition.GyroscopeAcquirer.IsSupported">
+            <summary>
+            Gets a value indicating whether this type of sensor is supported.
+            </summary>
+            <value>
+            	<c>true</c> if this sensor type is supported; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:PAARC.DataAcquisition.CompassAcquirer">
+            <summary>
+            A specific sensor acquirer implementation for the compass sensor.
+            </summary>
+        </member>
+        <member name="M:PAARC.DataAcquisition.CompassAcquirer.#ctor(System.Action{PAARC.Shared.Data.DataMessage})">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.DataAcquisition.CompassAcquirer"/> class.
+            </summary>
+            <param name="dataAcquiredCallback">The data acquired callback that is invoked when a new reading is available.</param>
+        </member>
+        <member name="M:PAARC.DataAcquisition.CompassAcquirer.CreateDataMessage(Microsoft.Devices.Sensors.CompassReading)">
+            <summary>
+            Creates a data message from a given reading.
+            </summary>
+            <param name="reading">The reading to use.</param>
+            <returns>A data message of the correct type that contains the data from the reading.</returns>
+        </member>
+        <member name="P:PAARC.DataAcquisition.CompassAcquirer.IsSupported">
+            <summary>
+            Gets a value indicating whether this type of sensor is supported.
+            </summary>
+            <value>
+            	<c>true</c> if this sensor type is supported; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:PAARC.DataAcquisition.DataSource">
+            <summary>
+            An implementation of the <c>IDataSource</c> interface that uses several Windows Phone specific implementations.
+            </summary>
+        </member>
+        <member name="M:PAARC.DataAcquisition.DataSource.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.DataAcquisition.DataSource"/> class.
+            </summary>
+        </member>
+        <member name="M:PAARC.DataAcquisition.DataSource.StartAcquisition(PAARC.Shared.DataType)">
+            <summary>
+            Starts acquisition of a certain data type.
+            </summary>
+            <param name="dataType">The type of data to start acquisition for.</param>
+        </member>
+        <member name="M:PAARC.DataAcquisition.DataSource.StopAcquisition(PAARC.Shared.DataType)">
+            <summary>
+            Stops acquisition of a certain data type.
+            </summary>
+            <param name="dataType">The type of the data to stop acquisition for.</param>
+        </member>
+        <member name="M:PAARC.DataAcquisition.DataSource.PauseAcquisition(PAARC.Shared.DataType)">
+            <summary>
+            Pauses acquisition of a certain data type.
+            </summary>
+            <param name="dataType">The type of the data to pause the acquisition for.</param>
+        </member>
+        <member name="M:PAARC.DataAcquisition.DataSource.ResumeAcquisition(PAARC.Shared.DataType)">
+            <summary>
+            Resumes acquisition of a certain data type.
+            </summary>
+            <param name="dataType">The type of data to resume the acquisition for.</param>
+        </member>
+        <member name="M:PAARC.DataAcquisition.DataSource.Shutdown">
+            <summary>
+            Shuts down the data source and cleans up all resources.
+            </summary>
+        </member>
+        <member name="M:PAARC.DataAcquisition.DataSource.GetActiveDataTypes">
+            <summary>
+            Gets the currently active data types, including the paused data types.
+            </summary>
+            <returns>
+            A collection of the data types that are currently set to be acquired, including the paused data types.
+            </returns>
+        </member>
+        <member name="M:PAARC.DataAcquisition.DataSource.GetPausedDataTypes">
+            <summary>
+            Gets the paused data types only.
+            </summary>
+            <returns>
+            A collection containing the currently paused data types.
+            </returns>
+        </member>
+        <member name="M:PAARC.DataAcquisition.DataSource.GetControllerInfoData">
+            <summary>
+            Gets capabilities information about the device used for data acquisition.
+            </summary>
+            <returns>
+            A <c>ControllerInfoData</c> object that contains the capabilities information of the device.
+            </returns>
+        </member>
+        <member name="M:PAARC.DataAcquisition.DataSource.Configure(PAARC.Shared.ControllerConfiguration)">
+            <summary>
+            Configures the data acquisition with the specified configuration.
+            </summary>
+            <param name="configuration">The configuration to use.</param>
+        </member>
+        <member name="M:PAARC.DataAcquisition.DataSource.AddData(PAARC.Shared.Data.DataMessage)">
+            <summary>
+            Manually adds new data to the data source to be reported to consumers.
+            This is mandatory for certain data types like <c>Text</c> which cannot be acquired automatically.
+            </summary>
+            <param name="dataMessage">The data message to be reported to consumers of the data source.</param>
+        </member>
+        <member name="E:PAARC.DataAcquisition.DataSource.DataAcquired">
+            <summary>
+            Raised when new data has been acquired from any data acquirer.
+            </summary>
+            <remarks>
+            Important: this event is not guaranteed to be raised on the synchronization context of the thread that created the data source.
+            For performance reasons, no marshaling happens. If you intend to consume this event from a UI thread, you have to dispatch
+            this event manually.
+            </remarks>
+        </member>
+        <member name="E:PAARC.DataAcquisition.DataSource.DataTypesChanged">
+            <summary>
+            Raised when the types data is acquired for have changed. 
+            </summary>
+            <remarks>
+            This event is guaranteed to be raised on the synchronization context of the thread that created the data source.
+            </remarks>
+        </member>
+    </members>
+</doc>

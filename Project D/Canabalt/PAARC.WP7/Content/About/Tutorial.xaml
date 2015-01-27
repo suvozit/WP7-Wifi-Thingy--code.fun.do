@@ -1,0 +1,139 @@
+﻿<UserControl x:Class="PAARC.WP7.Content.About.Tutorial"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+
+    <Grid x:Name="LayoutRoot"
+          Margin="0 -12 0 0">
+        <StackPanel HorizontalAlignment="Left"
+                    VerticalAlignment="Top">
+            <TextBlock Style="{StaticResource PhoneTextExtraLargeStyle}"
+                       Text="connecting"
+                       Margin="12 0 0 0"
+                       Foreground="{StaticResource PhoneAccentBrush}" />
+            <TextBlock Style="{StaticResource PhoneTextNormalStyle}"
+                       Margin="12 0 0 0"
+                       TextWrapping="Wrap"
+                       Text="To make use of PAARC you first need to connect to a remote application, for example the Windows Phone PC Controller. Make sure that the application you want to connect to is running. Then use the 'Auto Connect' feature of PAARC to try to automatically connect to this application." />
+            <Grid HorizontalAlignment="Center"
+                  Margin="0 5 0 0"
+                  Background="Black">
+                <Image HorizontalAlignment="Center"
+                       Margin="0 5 0 0"
+                       Stretch="None"
+                       Source="/Content/Images/main_page.png" />
+            </Grid>
+            <TextBlock Style="{StaticResource PhoneTextNormalStyle}"
+                       Margin="12 0 0 0"
+                       TextWrapping="Wrap"
+                       Text="In case the automatic discovery of the remote application fails, you can try to connect to it directly using the advanced options. For this you need the IP address the remote application is located at-an information that needs to be provided to you by that application." />
+
+            <TextBlock Style="{StaticResource PhoneTextExtraLargeStyle}"
+                       Text="supported networks"
+                       Margin="12 0 0 0"
+                       Foreground="{StaticResource PhoneAccentBrush}" />
+            <TextBlock Style="{StaticResource PhoneTextNormalStyle}"
+                       Margin="12 0 0 0"
+                       TextWrapping="Wrap"
+                       Text="PAARC potentially transmits a large amount of data. It is not suitable for use on cellular connections both due to performance considerations and the potential huge traffic costs. Therefore PAARC requires a Wi-Fi connection." />
+            <Grid HorizontalAlignment="Center"
+                  Margin="0 5 0 0"
+                  Background="Black">
+                <Image HorizontalAlignment="Center"
+                       Margin="0 5 0 0"
+                       Stretch="None"
+                       Source="/Content/Images/network_indicator.png" />
+            </Grid>
+            <TextBlock Style="{StaticResource PhoneTextNormalStyle}"
+                       Margin="12 0 0 0"
+                       TextWrapping="Wrap"
+                       Text="Keep an eye on the network indicator to see if your phone is connected to a network PAARC supports and can make use of." />
+            
+            <TextBlock Style="{StaticResource PhoneTextExtraLargeStyle}"
+                       Text="basic input"
+                       Margin="12 0 0 0"
+                       Foreground="{StaticResource PhoneAccentBrush}" />
+            <TextBlock Style="{StaticResource PhoneTextNormalStyle}"
+                       Margin="12 5 0 0"
+                       TextWrapping="Wrap"
+                       Text="Depending on the (active) features of the remote application, different ways of input will be available in PAARC. Typical ways of input are touch input or sensor input. To use touch input, interact with the active touch area of PAARC:" />
+            <Grid HorizontalAlignment="Center"
+                  Margin="0 5 0 0"
+                  Background="Black">
+                <Image HorizontalAlignment="Center"
+                       Margin="0 5 0 0"
+                       Stretch="None"
+                       Source="/Content/Images/touch_active_area.png" />
+            </Grid>
+            <TextBlock Style="{StaticResource PhoneTextNormalStyle}"
+                       Margin="12 5 0 0"
+                       TextWrapping="Wrap"
+                       Text="Sensor data is transmitted automatically if requested, without the need to manually activate anything on your end. More information and details on the possibilities with touch and sensor input and what you can do with it should be provided by the remote application." />
+
+            <TextBlock Style="{StaticResource PhoneTextExtraLargeStyle}"
+                       Text="special input"
+                       Margin="12 0 0 0"
+                       Foreground="{StaticResource PhoneAccentBrush}" />
+            <TextBlock Style="{StaticResource PhoneTextNormalStyle}"
+                       Margin="12 5 0 0"
+                       TextWrapping="Wrap"
+                       Text="Special forms of input like dragging or typing text is activated using so-called 'draggers', for example the text dragger:" />
+            <Grid HorizontalAlignment="Center"
+                  Margin="0 5 0 0"
+                  Background="Black">
+                <Image HorizontalAlignment="Center"
+                       Margin="0 5 0 0"
+                       Stretch="None"
+                       Source="/Content/Images/text_dragger.png" />
+            </Grid>
+            <TextBlock Style="{StaticResource PhoneTextNormalStyle}"
+                       Margin="12 5 0 0"
+                       TextWrapping="Wrap"
+                       Text="To activate a special input feature, start dragging outside of your phone's touch display and slowly swipe across the dragger until it snaps in (shown here for the drag feature): " />
+            <Grid HorizontalAlignment="Center"
+                  Margin="0 5 0 0"
+                  Background="Black">
+                <Image HorizontalAlignment="Center"
+                       Margin="0 5 0 0"
+                       Stretch="None"
+                       Source="/Content/Images/drag_dragger_interaction.png" />
+            </Grid>
+            <TextBlock Style="{StaticResource PhoneTextNormalStyle}"
+                       Margin="12 5 0 0"
+                       TextWrapping="Wrap"
+                       Text="Once activated, it depends on the particular feature how you make futher use of it. The text dragger for example will bring up a text input prompt you can use to type in your text. The drag feature on the other hand will let you make use of the touch active area to perform dragging." />
+            <TextBlock Style="{StaticResource PhoneTextNormalStyle}"
+                       Margin="12 5 0 0"
+                       TextWrapping="Wrap"
+                       Text="Some special input features like dragging need to be turned off explicitly. Simply tap the activated dragger to deactivate it again. Other features are deactivated automatically, for example in case of the text input, when you confirm or abort the text prompt." />
+            <TextBlock Style="{StaticResource PhoneTextNormalStyle}"
+                       Margin="12 5 0 0"
+                       TextWrapping="Wrap"
+                       FontWeight="Bold"
+                       Text="Important:" />
+            <TextBlock Style="{StaticResource PhoneTextNormalStyle}"
+                       Margin="12 5 0 0"
+                       TextWrapping="Wrap"
+                       Text="Please note that only those draggers supported by the remote application are visible." />
+
+            <TextBlock Style="{StaticResource PhoneTextExtraLargeStyle}"
+                       Text="further help"
+                       Margin="12 0 0 0"
+                       Foreground="{StaticResource PhoneAccentBrush}" />
+            <TextBlock Style="{StaticResource PhoneTextNormalStyle}"
+                       Margin="12 5 0 0"
+                       TextWrapping="Wrap"
+                       Text="If you need more help or assistance with PAARC, please don't hesitate to contact us. We'll gladly try to help you resolve any issues you run into." />
+            <TextBlock Style="{StaticResource PhoneTextNormalStyle}"
+                       Margin="12 5 0 10"
+                       TextWrapping="Wrap"
+                       Text="Please note that if you have problems with a particular remote application other than 'Windows Phone PC Controller' we unfortunately cannot provide support; please try to contact the author of that application to resolve any issues then." />
+        </StackPanel>
+    </Grid>
+</UserControl>

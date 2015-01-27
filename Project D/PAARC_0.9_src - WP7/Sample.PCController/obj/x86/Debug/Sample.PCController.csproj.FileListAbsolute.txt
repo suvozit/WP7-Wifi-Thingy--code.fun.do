@@ -1,0 +1,28 @@
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.PCController\bin\Debug\NLog.config
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.PCController\bin\Debug\PCController.exe
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.PCController\bin\Debug\PCController.pdb
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.PCController\bin\Debug\NLog.dll
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.PCController\bin\Debug\PAARC.ServerCommunication.dll
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.PCController\bin\Debug\PAARC.Shared.dll
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.PCController\bin\Debug\PAARC.ServerCommunication.pdb
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.PCController\bin\Debug\PAARC.ServerCommunication.xml
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.PCController\bin\Debug\PAARC.Shared.pdb
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.PCController\bin\Debug\PAARC.Shared.xml
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.PCController\bin\Debug\NLog.xml
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.PCController\obj\x86\Debug\Sample.PCController.csprojResolveAssemblyReference.cache
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.PCController\obj\x86\Debug\MainWindow.g.cs
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.PCController\obj\x86\Debug\Views\VersionInfoWindow.g.cs
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.PCController\obj\x86\Debug\App.g.cs
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.PCController\obj\x86\Debug\PCController_Content.g.cs
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.PCController\obj\x86\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.PCController\obj\x86\Debug\PCController_MarkupCompile.cache
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.PCController\obj\x86\Debug\PCController_MarkupCompile.lref
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.PCController\obj\x86\Debug\MainWindow.baml
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.PCController\obj\x86\Debug\Views\VersionInfoWindow.baml
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.PCController\obj\x86\Debug\PCController.g.resources
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.PCController\obj\x86\Debug\PCController.Properties.Resources.resources
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.PCController\obj\x86\Debug\Sample.PCController.csproj.GenerateResource.Cache
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.PCController\obj\x86\Debug\PCController.exe
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\Sample.PCController\obj\x86\Debug\PCController.pdb
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - WP7\Sample.PCController\obj\x86\Debug\PCController.exe
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - WP7\Sample.PCController\obj\x86\Debug\PCController.pdb

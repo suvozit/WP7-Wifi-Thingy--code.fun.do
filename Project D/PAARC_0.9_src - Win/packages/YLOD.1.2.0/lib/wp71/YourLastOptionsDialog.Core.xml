@@ -1,0 +1,271 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>YourLastOptionsDialog.Core</name>
+    </assembly>
+    <members>
+        <member name="T:YourLastOptionsDialog.Core.Attributes.DateTimeMode">
+            <summary>
+            Defines the mode for editing <see cref="F:YourLastOptionsDialog.Core.Attributes.DateTimeMode.DateTime"/> objects.
+            </summary>
+        </member>
+        <member name="F:YourLastOptionsDialog.Core.Attributes.DateTimeMode.Date">
+            <summary>
+            Only the date component is used.
+            </summary>
+        </member>
+        <member name="F:YourLastOptionsDialog.Core.Attributes.DateTimeMode.Time">
+            <summary>
+            Only the time component is used.
+            </summary>
+        </member>
+        <member name="F:YourLastOptionsDialog.Core.Attributes.DateTimeMode.DateTime">
+            <summary>
+            Both the date and time components are used.
+            </summary>
+        </member>
+        <member name="T:YourLastOptionsDialog.Core.Attributes.OptionAttribute">
+            <summary>
+            An attribute used to decorate properties of arbitrary classes to configure their treatment as options.
+            </summary>
+        </member>
+        <member name="M:YourLastOptionsDialog.Core.Attributes.OptionAttribute.Format(System.String)">
+            <summary>
+            Formats the specified property value, either by returning a localized resource for the given
+            value, or by returning the value itself if no localized resources have been configured.
+            </summary>
+            <param name="propertyValueOrKey">The property value that may or may not be a resource key.</param>
+            <returns>A localized resource for the given value, or the value itself if no localized resources have been configured.</returns>
+        </member>
+        <member name="M:YourLastOptionsDialog.Core.Attributes.OptionAttribute.GetPropertyAccessor(System.String)">
+            <summary>
+            Gets an accessor to the actual value of any property of the option attribute.
+            This works as follows: if the user has defined a <see cref="P:YourLastOptionsDialog.Core.Attributes.OptionAttribute.ResourceType"/>,
+            this method reflects on the resource to get an accessor that can be used to 
+            fetch the actual value. If no <see cref="P:YourLastOptionsDialog.Core.Attributes.OptionAttribute.ResourceType"/> has been configured
+            or the property value could not be found in the resources as key, the returned
+            accessor passes through the property value itself.
+            </summary>
+            <param name="propertyValueOrKey">The property value that also is a potential key
+            in a resource class if the <see cref="P:YourLastOptionsDialog.Core.Attributes.OptionAttribute.ResourceType"/> has been configured.</param>
+            <returns>An accessor that returns either the value from a resource class, 
+            or simply the unchanged property value for the given property.</returns>
+        </member>
+        <member name="P:YourLastOptionsDialog.Core.Attributes.OptionAttribute.DisplayName">
+            <summary>
+            Gets or sets the display name.
+            </summary>
+        </member>
+        <member name="P:YourLastOptionsDialog.Core.Attributes.OptionAttribute.Description">
+            <summary>
+            Gets or sets the description.
+            </summary>
+        </member>
+        <member name="P:YourLastOptionsDialog.Core.Attributes.OptionAttribute.GroupName">
+            <summary>
+            Gets or sets the name of the group that is used to group multiple options in the UI.
+            </summary>
+        </member>
+        <member name="P:YourLastOptionsDialog.Core.Attributes.OptionAttribute.DisplayOrder">
+            <summary>
+            Gets or sets the display order that determines the order of options within a group.
+            </summary>
+        </member>
+        <member name="P:YourLastOptionsDialog.Core.Attributes.OptionAttribute.ResourceType">
+            <summary>
+            Gets or sets the type of the resource used to retrieve (localized) values for other properties
+            like <see cref="P:YourLastOptionsDialog.Core.Attributes.OptionAttribute.DisplayName"/> and <see cref="P:YourLastOptionsDialog.Core.Attributes.OptionAttribute.Description"/>. If this is set, 
+            the values of these properties are treated as lookup keys for the actual values.
+            </summary>
+        </member>
+        <member name="T:YourLastOptionsDialog.Core.Attributes.OptionBooleanAttribute">
+            <summary>
+            An option attribute that represents a boolean option.
+            </summary>
+        </member>
+        <member name="P:YourLastOptionsDialog.Core.Attributes.OptionBooleanAttribute.UserMustConfirmActivation">
+            <summary>
+            Gets or sets a value indicating whether the user must confirm activation of this value (i.e. changing the value from <c>false</c> to <c>true</c>).
+            </summary>
+            <value>
+            <c>true</c> if the user must confirm activation; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:YourLastOptionsDialog.Core.Attributes.OptionBooleanAttribute.UserMustConfirmDeactivation">
+            <summary>
+            Gets or sets a value indicating whether the user must confirm deactivation of this value (i.e. changing the value from <c>true</c> to <c>false</c>).
+            </summary>
+            <value>
+            <c>true</c> if the user must confirm deactivation; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:YourLastOptionsDialog.Core.Attributes.OptionBooleanAttribute.ActivationPrompt">
+            <summary>
+            Gets or sets the activation prompt. This is only used if <see cref="P:YourLastOptionsDialog.Core.Attributes.OptionBooleanAttribute.UserMustConfirmActivation"/> is set to true.
+            If a <see cref="P:YourLastOptionsDialog.Core.Attributes.OptionAttribute.ResourceType"/> is set in the base class, this should contain the key to the localized entry in the resources.
+            </summary>
+        </member>
+        <member name="P:YourLastOptionsDialog.Core.Attributes.OptionBooleanAttribute.DeactivationPrompt">
+            <summary>
+            Gets or sets the deactivation prompt. This is only used if <see cref="P:YourLastOptionsDialog.Core.Attributes.OptionBooleanAttribute.UserMustConfirmDeactivation"/> is set to true.
+            If a <see cref="P:YourLastOptionsDialog.Core.Attributes.OptionAttribute.ResourceType"/> is set in the base class, this should contain the key to the localized entry in the resources.
+            </summary>
+        </member>
+        <member name="T:YourLastOptionsDialog.Core.Attributes.OptionColorAttribute">
+            <summary>
+            An option attribute that represents a color option.
+            </summary>
+        </member>
+        <member name="T:YourLastOptionsDialog.Core.Attributes.OptionDateTimeAttribute">
+            <summary>
+            An option attribute that represents a boolean option.
+            </summary>
+        </member>
+        <member name="P:YourLastOptionsDialog.Core.Attributes.OptionDateTimeAttribute.Mode">
+            <summary>
+            Gets or sets the mode used for editing the <see cref="T:System.DateTime"/> instance.
+            </summary>
+        </member>
+        <member name="T:YourLastOptionsDialog.Core.Attributes.OptionEnumAttribute">
+            <summary>
+            An option attribute that represents an enumeration option.
+            </summary>
+        </member>
+        <member name="T:YourLastOptionsDialog.Core.Attributes.OptionFloatAttribute">
+            <summary>
+            An option attribute that represents a floating point option (<see cref="T:System.Decimal"/>, <see cref="T:System.Double"/> or <see cref="T:System.Single"/>).
+            </summary>
+        </member>
+        <member name="P:YourLastOptionsDialog.Core.Attributes.OptionFloatAttribute.Minimum">
+            <summary>
+            Gets or sets the minimum allowed value for this option.
+            The default is <see cref="F:System.Double.MinValue"/>.
+            </summary>
+        </member>
+        <member name="P:YourLastOptionsDialog.Core.Attributes.OptionFloatAttribute.Maximum">
+            <summary>
+            Gets or sets the maximum.
+            The default is <see cref="F:System.Double.MaxValue"/>.
+            </summary>
+        </member>
+        <member name="P:YourLastOptionsDialog.Core.Attributes.OptionFloatAttribute.ValidationErrorMessage">
+            <summary>
+            Gets or sets the validation error message that is used if the value is outside the configured 
+            minimum or maximum bounds, or if the user enters a string that cannot be converted to a floating point value.
+            </summary>
+        </member>
+        <member name="T:YourLastOptionsDialog.Core.Attributes.OptionIgnoreAttribute">
+            <summary>
+            An option attribute that indicates that a property should be ignored by the options engine.
+            </summary>
+        </member>
+        <member name="T:YourLastOptionsDialog.Core.Attributes.OptionIntegralAttribute">
+            <summary>
+            An option attribute that represents an integral option (<see cref="T:System.Byte"/>, <see cref="T:System.SByte"/>, <see cref="T:System.Int16"/>, <see cref="T:System.UInt16"/>,
+            <see cref="T:System.Int32"/>, <see cref="T:System.UInt32"/>, <see cref="T:System.Int64"/>, <see cref="T:System.UInt64"/>).
+            </summary>
+        </member>
+        <member name="P:YourLastOptionsDialog.Core.Attributes.OptionIntegralAttribute.Minimum">
+            <summary>
+            Gets or sets the minimum allowed value for this option.
+            The default is <see cref="F:System.Int64.MinValue"/>.
+            </summary>
+        </member>
+        <member name="P:YourLastOptionsDialog.Core.Attributes.OptionIntegralAttribute.Maximum">
+            <summary>
+            Gets or sets the maximum allowed value for this option.
+            The default is <see cref="F:System.Int64.MaxValue"/>.
+            </summary>
+        </member>
+        <member name="P:YourLastOptionsDialog.Core.Attributes.OptionIntegralAttribute.ValidationErrorMessage">
+            <summary>
+            Gets or sets the validation error message that is used if the value is outside the configured 
+            minimum or maximum bounds, or if the user enters a string that cannot be converted to an integral value.
+            </summary>
+        </member>
+        <member name="T:YourLastOptionsDialog.Core.Attributes.OptionPasswordAttribute">
+            <summary>
+            An option attribute that represents a password option.
+            Derives from and inherits all options of the string attribute.
+            </summary>
+        </member>
+        <member name="T:YourLastOptionsDialog.Core.Attributes.OptionStringAttribute">
+            <summary>
+            An option attribute that represents a string option.
+            </summary>
+        </member>
+        <member name="P:YourLastOptionsDialog.Core.Attributes.OptionStringAttribute.MinLength">
+            <summary>
+            Gets or sets the minimum allowed length of the string.
+            The default is zero.
+            </summary>
+        </member>
+        <member name="P:YourLastOptionsDialog.Core.Attributes.OptionStringAttribute.MaxLength">
+            <summary>
+            Gets or sets the maximum allowed length of the string.
+            The default is <see cref="F:System.Int32.MaxValue"/>.
+            </summary>
+        </member>
+        <member name="P:YourLastOptionsDialog.Core.Attributes.OptionStringAttribute.InputScopeNameValue">
+            <summary>
+            Gets or sets the input scope name value that is used by the UI to display a suitable SIP keyboard layout to the user.
+            </summary>
+        </member>
+        <member name="P:YourLastOptionsDialog.Core.Attributes.OptionStringAttribute.RegularExpression">
+            <summary>
+            Gets or sets a regular expression that is used to validate the string entered by the user.
+            </summary>
+        </member>
+        <member name="P:YourLastOptionsDialog.Core.Attributes.OptionStringAttribute.ValidatorType">
+            <summary>
+            Gets or sets the type of validator to use for validation. If a validator is 
+            specified, then none of the other validation properties are in effect anymore. In particular,
+            if a validator is configured, the values of <see cref="P:YourLastOptionsDialog.Core.Attributes.OptionStringAttribute.MinLength"/>, <see cref="P:YourLastOptionsDialog.Core.Attributes.OptionStringAttribute.MaxLength"/>,
+            <see cref="P:YourLastOptionsDialog.Core.Attributes.OptionStringAttribute.RegularExpression"/> and <see cref="P:YourLastOptionsDialog.Core.Attributes.OptionStringAttribute.ValidationErrorMessage"/> are ignored and the 
+            validator is instead used for all validation.
+            </summary>
+        </member>
+        <member name="P:YourLastOptionsDialog.Core.Attributes.OptionStringAttribute.ValidationErrorMessage">
+            <summary>
+            Gets or sets the validation error message that is used if the value is outside the configured 
+            minimum or maximum length, or if the value does not satisfy the given regular expression.
+            </summary>
+        </member>
+        <member name="P:YourLastOptionsDialog.Core.Attributes.OptionPasswordAttribute.ShowConfirmation">
+            <summary>
+            Gets or sets a value indicating whether a second editor for confirmation should be shown,
+            typically when the user is supposed to change a password.
+            </summary>
+            <value>
+              <c>true</c> if a confirmation editor should be shown; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:YourLastOptionsDialog.Core.Attributes.OptionPasswordAttribute.ConfirmationDescription">
+            <summary>
+            Gets or sets the confirmation password description.
+            </summary>
+        </member>
+        <member name="P:YourLastOptionsDialog.Core.Attributes.OptionPasswordAttribute.PasswordsDoNotMatchErrorMessage">
+            <summary>
+            Gets or sets the passwords don't match error message.
+            </summary>
+        </member>
+        <member name="T:YourLastOptionsDialog.Core.Attributes.OptionTimeSpanAttribute">
+            <summary>
+            An option attribute that represents a <see cref="T:System.TimeSpan"/> option.
+            </summary>
+        </member>
+        <member name="P:YourLastOptionsDialog.Core.Attributes.OptionTimeSpanAttribute.Maximum">
+            <summary>
+            Gets or sets the maximum value allowed. Has to be provided as "hh:mm:ss" or other
+            compatible <see cref="T:System.TimeSpan"/> string formats.
+            </summary>
+        </member>
+        <member name="P:YourLastOptionsDialog.Core.Attributes.OptionTimeSpanAttribute.Step">
+            <summary>
+            Gets or sets the step used in the UI for the selector. Has to be provided as "hh:mm:ss" or other
+            compatible <see cref="T:System.TimeSpan"/> string formats.
+            </summary>
+        </member>
+    </members>
+</doc>

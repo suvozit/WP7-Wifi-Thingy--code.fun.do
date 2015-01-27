@@ -1,0 +1,99 @@
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:PCController_ViewModels="clr-namespace:PCController.ViewModels"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+        mc:Ignorable="d"
+        x:Class="PCController.Views.VersionInfoWindow"
+        Title="Windows Phone PC Controller"
+        Height="400"
+        Width="500"
+        ShowInTaskbar="False"
+        WindowStyle="ToolWindow"
+        WindowStartupLocation="CenterOwner">
+    <Window.Resources>
+        <DataTemplate x:Key="VersionDataTemplate">
+            <Grid Margin="0,0,0,5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal"
+                            d:LayoutOverrides="Height">
+                    <TextBlock TextWrapping="Wrap"
+                               Text="{Binding VersionNumber}"
+                               d:LayoutOverrides="Width"
+                               FontWeight="Bold"
+                               Margin="0,0,-0.001,0" />
+                    <TextBlock TextWrapping="Wrap"
+                               Text="{Binding ReleaseDate, StringFormat=({0:D})}"
+                               Margin="10,0,0,0" />
+                </StackPanel>
+                <ItemsControl Grid.Row="1"
+                              Margin="10,0,0,0"
+                              ItemsSource="{Binding Changes}"
+                              ItemTemplate="{DynamicResource ChangeDataTemplate}" />
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="ChangeDataTemplate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Ellipse Grid.Column="0"
+                         Fill="#FFF4F4F5"
+                         HorizontalAlignment="Left"
+                         Stroke="Black"
+                         Width="5"
+                         Height="5"
+                         VerticalAlignment="Top"
+                         Margin="0,6,5,0" />
+                <TextBlock TextWrapping="Wrap"
+                           Text="{Binding Mode=OneWay}"
+                           d:LayoutOverrides="Width, Height"
+                           Grid.Column="1" />
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel Margin="0"
+                    Orientation="Vertical"
+                    VerticalAlignment="Top">
+            <TextBlock HorizontalAlignment="Left"
+                       TextWrapping="Wrap"><Run Text="A new version of the application is available for download." /></TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock TextWrapping="Wrap"><Run Text="Your current version is:" /></TextBlock>
+                <TextBlock TextWrapping="Wrap"
+                           Text="{Binding CurrentVersion, Mode=OneWay}"
+                           Margin="10,0,0,0"
+                           Foreground="Red" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock TextWrapping="Wrap"><Run Text="The newest available version is:" /></TextBlock>
+                <TextBlock TextWrapping="Wrap"
+                           Text="{Binding NewestVersion, Mode=OneWay}"
+                           Margin="10,0,0,0"
+                           Foreground="Red" />
+            </StackPanel>
+            <TextBlock Margin="0,10,0,0"
+                       HorizontalAlignment="Center">
+                <Hyperlink NavigateUri="{Binding DownloadUri}"
+                           RequestNavigate="Hyperlink_RequestNavigate"><Run Text="Download the installer" /></Hyperlink>
+            </TextBlock>
+            <TextBlock TextWrapping="Wrap"
+                       Margin="0,10,0,0"><Run Text="Version history and new features:" /></TextBlock>
+        </StackPanel>
+        <ListBox Margin="0"
+                 Grid.Row="1"
+                 ItemsSource="{Binding Versions, Mode=OneWay}"
+                 ItemTemplate="{DynamicResource VersionDataTemplate}"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" />
+    </Grid>
+</Window>

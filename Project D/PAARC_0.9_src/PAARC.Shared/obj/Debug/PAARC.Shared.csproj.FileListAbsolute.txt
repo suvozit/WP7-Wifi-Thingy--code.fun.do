@@ -1,0 +1,5 @@
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\PAARC.Shared\bin\Debug\PAARC.Shared.dll
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\PAARC.Shared\bin\Debug\PAARC.Shared.pdb
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\PAARC.Shared\obj\Debug\PAARC.Shared.dll
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\PAARC.Shared\obj\Debug\PAARC.Shared.pdb
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\PAARC.Shared\bin\Debug\PAARC.Shared.xml

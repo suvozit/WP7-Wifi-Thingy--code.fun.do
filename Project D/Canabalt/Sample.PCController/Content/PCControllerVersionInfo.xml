@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<!-- This is the file that is pulled from a remote source to determine whether updates are available -->
+<Versions>
+  <Version Number="1.0.0.0"
+           ReleaseDate="2011-12-13"
+           InstallerUrl="http://www.pitorque.de/downloads/PCController.1.0.0.0.Setup.msi">
+    <History>
+      <Change>Added update detection mechanism.</Change>
+      <Change>Changed the application design and icon.</Change>
+    </History>
+  </Version>
+  <Version Number="0.9.0.0"           
+           ReleaseDate="2011-11-01"
+           InstallerUrl="">
+    <History>
+      <Change>This is the initial version of the application.</Change>
+    </History>
+  </Version>
+</Versions>

@@ -1,0 +1,23 @@
+C:\Users\Codinpsycho\Desktop\Project D\samples\InputToyWP7_4_0\InputToyWP7\bin\Windows Phone\Debug\GameThumbnail.png
+C:\Users\Codinpsycho\Desktop\Project D\samples\InputToyWP7_4_0\InputToyWP7\bin\Windows Phone\Debug\Content\btnHelp.xnb
+C:\Users\Codinpsycho\Desktop\Project D\samples\InputToyWP7_4_0\InputToyWP7\bin\Windows Phone\Debug\Content\btnPause.xnb
+C:\Users\Codinpsycho\Desktop\Project D\samples\InputToyWP7_4_0\InputToyWP7\bin\Windows Phone\Debug\Content\btnPlay.xnb
+C:\Users\Codinpsycho\Desktop\Project D\samples\InputToyWP7_4_0\InputToyWP7\bin\Windows Phone\Debug\Content\Flare.xnb
+C:\Users\Codinpsycho\Desktop\Project D\samples\InputToyWP7_4_0\InputToyWP7\bin\Windows Phone\Debug\Content\Instructions.xnb
+C:\Users\Codinpsycho\Desktop\Project D\samples\InputToyWP7_4_0\InputToyWP7\bin\Windows Phone\Debug\InputToyWP7.dll
+C:\Users\Codinpsycho\Desktop\Project D\samples\InputToyWP7_4_0\InputToyWP7\bin\Windows Phone\Debug\InputToyWP7.pdb
+C:\Users\Codinpsycho\Desktop\Project D\samples\InputToyWP7_4_0\InputToyWP7\obj\Windows Phone\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Codinpsycho\Desktop\Project D\samples\InputToyWP7_4_0\InputToyWP7\obj\Windows Phone\Debug\InputToyWP7.dll
+C:\Users\Codinpsycho\Desktop\Project D\samples\InputToyWP7_4_0\InputToyWP7\obj\Windows Phone\Debug\InputToyWP7.pdb
+C:\Users\Codinpsycho\Desktop\Project D\samples\InputToyWP7_4_0\InputToyWP7\bin\Windows Phone\Debug\AppManifest.xaml
+C:\Users\Codinpsycho\Desktop\Project D\samples\InputToyWP7_4_0\InputToyWP7\obj\Windows Phone\Debug\WMAppManifest.xml.g
+C:\Users\Codinpsycho\Desktop\Project D\samples\InputToyWP7_4_0\InputToyWP7\obj\Windows Phone\Debug\WMAppManifest.xml
+bin\Windows Phone\Debug\
+C:\Users\Codinpsycho\Desktop\Project D\samples\InputToyWP7_4_0\InputToyWP7\bin\Windows Phone\Debug\InputToyWP7.xap
+C:\Users\Codinpsycho\Desktop\Project D\samples\InputToyWP7_4_0\InputToyWP7\obj\Windows Phone\Debug\XapCacheFile.xml
+C:\Users\Codinpsycho\Desktop\Project D\samples\InputToyWP7_4_0\InputToyWP7\bin\Windows Phone\Debug\InputToyWP7.xap
+C:\Users\Codinpsycho\Desktop\Project D\samples\InputToyWP7_4_0\InputToyWP7\obj\Windows Phone\Debug\XapCacheFile.xml
+C:\Users\Codinpsycho\Desktop\Project D\samples\InputToyWP7_4_0\InputToyWP7\bin\Windows Phone\Debug\AppManifest.xaml
+C:\Users\Codinpsycho\Desktop\Project D\samples\InputToyWP7_4_0\InputToyWP7\obj\Windows Phone\Debug\WMAppManifest.xml.g
+C:\Users\Codinpsycho\Desktop\Project D\samples\InputToyWP7_4_0\InputToyWP7\obj\Windows Phone\Debug\WMAppManifest.xml
+bin\Windows Phone\Debug\

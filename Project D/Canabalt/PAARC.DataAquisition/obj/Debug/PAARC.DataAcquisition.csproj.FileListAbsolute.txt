@@ -1,0 +1,32 @@
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\PAARC.DataAquisition\Bin\Debug\PAARC.DataAcquisition.dll
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\PAARC.DataAquisition\Bin\Debug\PAARC.DataAcquisition.pdb
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\PAARC.DataAquisition\Bin\Debug\NLog.dll
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\PAARC.DataAquisition\Bin\Debug\PAARC.Shared.dll
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\PAARC.DataAquisition\Bin\Debug\PAARC.Shared.pdb
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\PAARC.DataAquisition\Bin\Debug\PAARC.Shared.xml
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\PAARC.DataAquisition\Bin\Debug\NLog.xml
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\PAARC.DataAquisition\obj\Debug\PAARC.DataAcquisition.csprojResolveAssemblyReference.cache
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\PAARC.DataAquisition\obj\Debug\PAARC.DataAcquisition.dll
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\PAARC.DataAquisition\obj\Debug\PAARC.DataAcquisition.pdb
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\PAARC.DataAquisition\Bin\Debug\PAARC.DataAcquisition.xml
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\PAARC.DataAquisition\Bin\Debug\PAARC.DataAcquisition.xml
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\PAARC.DataAquisition\Bin\Debug\PAARC.DataAcquisition.dll
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\PAARC.DataAquisition\Bin\Debug\PAARC.DataAcquisition.pdb
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\PAARC.DataAquisition\Bin\Debug\NLog.dll
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\PAARC.DataAquisition\Bin\Debug\PAARC.Shared.dll
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\PAARC.DataAquisition\Bin\Debug\PAARC.Shared.pdb
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\PAARC.DataAquisition\Bin\Debug\PAARC.Shared.xml
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\PAARC.DataAquisition\Bin\Debug\NLog.xml
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\PAARC.DataAquisition\obj\Debug\PAARC.DataAcquisition.csprojResolveAssemblyReference.cache
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\PAARC.DataAquisition\obj\Debug\PAARC.DataAcquisition.dll
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src - Win\PAARC.DataAquisition\obj\Debug\PAARC.DataAcquisition.pdb
+C:\Users\Codinpsycho\Desktop\Project D\Canabalt\PAARC.DataAquisition\Bin\Debug\PAARC.DataAcquisition.dll
+C:\Users\Codinpsycho\Desktop\Project D\Canabalt\PAARC.DataAquisition\Bin\Debug\PAARC.DataAcquisition.pdb
+C:\Users\Codinpsycho\Desktop\Project D\Canabalt\PAARC.DataAquisition\Bin\Debug\NLog.dll
+C:\Users\Codinpsycho\Desktop\Project D\Canabalt\PAARC.DataAquisition\Bin\Debug\PAARC.Shared.dll
+C:\Users\Codinpsycho\Desktop\Project D\Canabalt\PAARC.DataAquisition\Bin\Debug\PAARC.Shared.pdb
+C:\Users\Codinpsycho\Desktop\Project D\Canabalt\PAARC.DataAquisition\Bin\Debug\PAARC.Shared.xml
+C:\Users\Codinpsycho\Desktop\Project D\Canabalt\PAARC.DataAquisition\Bin\Debug\NLog.xml
+C:\Users\Codinpsycho\Desktop\Project D\Canabalt\PAARC.DataAquisition\obj\Debug\PAARC.DataAcquisition.csprojResolveAssemblyReference.cache
+C:\Users\Codinpsycho\Desktop\Project D\Canabalt\PAARC.DataAquisition\obj\Debug\PAARC.DataAcquisition.dll
+C:\Users\Codinpsycho\Desktop\Project D\Canabalt\PAARC.DataAquisition\obj\Debug\PAARC.DataAcquisition.pdb

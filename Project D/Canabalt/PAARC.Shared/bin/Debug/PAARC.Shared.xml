@@ -1,0 +1,2323 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PAARC.Shared</name>
+    </assembly>
+    <members>
+        <member name="T:PAARC.Shared.PhoneControllerState">
+            <summary>
+            The possible states of the phone controller, both for the client and server side.
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.PhoneControllerState.Created">
+            <summary>
+            The controller has been created and basic configuration has been performed,
+            but no networking operations have been started yet.
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.PhoneControllerState.Initialized">
+            <summary>
+            The controller has started networking operations and is in a pending state,
+            for example listening for incoming client connection requests, or in the progress
+            of connecting to a remote server.
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.PhoneControllerState.Ready">
+            <summary>
+            The controller is ready to be used, which means it has successfully connected
+            to a remote server, or successfully accepted an incoming client request. The
+            data and control channels are fully functional and can be used to transfer
+            commands and data.
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.PhoneControllerState.Error">
+            <summary>
+            An unrecoverable error occurred and transitioned the controller into this state.
+            No more sending or receiving of data is possible. Applications should shut down
+            the controller to ensure cleanup of all resources. Shutting down a controller from
+            the error state ultimately will result in a transition to the <c>Closed</c> state,
+            which allows re-initialization.
+            Please note that applications should consider capturing the <c>Error</c>
+            event of a controller to get more information about the actual error that occurred,
+            instead of solely relying on detecting state transitions to the <c>Error</c> state.
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.PhoneControllerState.Closing">
+            <summary>
+            The controller has started shutting down.
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.PhoneControllerState.Closed">
+            <summary>
+            The controller has finished shutting down. All resources have been successfully 
+            cleaned up. A controller in the <c>Closed</c> state can be re-initialized and 
+            is logically equivalent to a controller in the <c>Created</c> state.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.Data.Quaternion">
+            <summary>
+            A quaternion data container class,
+            necessary to overcome the limitations of portable class libraries.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Data.Quaternion.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.Shared.Data.Quaternion"/> class.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Data.Quaternion.#ctor(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.Shared.Data.Quaternion"/> class with a given set of coordinates.
+            </summary>
+            <param name="x">The X coordinate.</param>
+            <param name="y">The Y coordinate.</param>
+            <param name="z">The Z coordinate.</param>
+            <param name="w">The W coordinate.</param>
+        </member>
+        <member name="P:PAARC.Shared.Data.Quaternion.X">
+            <summary>
+            Gets or sets the X coordinate.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.Quaternion.Y">
+            <summary>
+            Gets or sets the Y coordinate.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.Quaternion.Z">
+            <summary>
+            Gets or sets the Z coordinate.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.Quaternion.W">
+            <summary>
+            Gets or sets the W coordinate.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.Data.ControllerInfoData">
+            <summary>
+            Represents a data message that contains the capabilities of the device used for data acquisition, among other information.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.Data.DataMessage">
+            <summary>
+            An abstract base class that contains fundamental functionality shared by all data message types.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.Data.IDataMessage">
+            <summary>
+            Describes a piece of data acquired on the phone and sent to a remote server.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Data.IDataMessage.ToByteArray">
+            <summary>
+            Creates a raw representation of the data message.
+            </summary>
+            <returns>A byte array containing the raw representation of the data.</returns>
+        </member>
+        <member name="M:PAARC.Shared.Data.IDataMessage.FromByteArray(System.Byte[],System.Int32)">
+            <summary>
+            Recreates the data message content froms a raw byte array representation, starting at a given offset in the raw data.
+            </summary>
+            <param name="rawData">The raw data to use.</param>
+            <param name="start">The starting index to restore the data message content from.</param>
+        </member>
+        <member name="P:PAARC.Shared.Data.IDataMessage.Length">
+            <summary>
+            Gets or sets the total length of the data message, in bytes.
+            </summary>
+            <value>
+            The length of the data message in bytes.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.Data.IDataMessage.DataType">
+            <summary>
+            Gets the type of data contained in the data message.
+            </summary>
+            <value>
+            The type of data contained in the data message.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.Data.IDataMessage.MustBeDelivered">
+            <summary>
+            Gets a value indicating whether the data message must be delivered reliably or not.
+            </summary>
+            <value>
+              <c>true</c> if the data message must be delivered reliably; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="F:PAARC.Shared.Data.DataMessage.MaxLength">
+            <summary>
+            The maximum length, in bytes, of a data message.
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.Data.DataMessage.MaxPayloadLength">
+            <summary>
+            The maximum payload length, in bytes, available to derived data message classes after considering all meta data.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Data.DataMessage.ToByteArray">
+            <summary>
+            Creates a raw representation of the data message.
+            </summary>
+            <returns>
+            A byte array containing the raw representation of the data.
+            </returns>
+        </member>
+        <member name="M:PAARC.Shared.Data.DataMessage.FromByteArray(System.Byte[],System.Int32)">
+            <summary>
+            Recreates the data message content froms a raw byte array representation, starting at a given offset in the raw data.
+            </summary>
+            <param name="rawData">The raw data to use.</param>
+            <param name="start">The starting index to restore the data message content from.</param>
+        </member>
+        <member name="M:PAARC.Shared.Data.DataMessage.WriteData(System.IO.BinaryWriter)">
+            <summary>
+            When overwritten in a derived class, adds custom data to the raw representation of the data message.
+            </summary>
+            <param name="writer">The binary writer used to create the raw representation of the data message.</param>
+        </member>
+        <member name="M:PAARC.Shared.Data.DataMessage.ReadData(System.IO.BinaryReader)">
+            <summary>
+            When overwritten in a derived class, reads back custom data from a raw representation of the data message.
+            </summary>
+            <param name="reader">The binary reader used to read from the raw representation of the original data message.</param>
+        </member>
+        <member name="P:PAARC.Shared.Data.DataMessage.Length">
+            <summary>
+            Gets or sets the total length of the data message, in bytes.
+            </summary>
+            <value>
+            The length of the data message in bytes.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.Data.DataMessage.DataType">
+            <summary>
+            Gets the type of data contained in the data message.
+            </summary>
+            <value>
+            The type of data contained in the data message.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.Data.DataMessage.MustBeDelivered">
+            <summary>
+            Gets a value indicating whether the data message must be delivered reliably or not.
+            </summary>
+            <value>
+            	<c>true</c> if the data message must be delivered reliably; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:PAARC.Shared.Data.ControllerInfoData.WriteData(System.IO.BinaryWriter)">
+            <summary>
+            Adds custom data to the raw representation of the data message.
+            </summary>
+            <param name="writer">The binary writer used to create the raw representation of the data message.</param>
+        </member>
+        <member name="M:PAARC.Shared.Data.ControllerInfoData.ReadData(System.IO.BinaryReader)">
+            <summary>
+            Reads back custom data from a raw representation of the data message.
+            </summary>
+            <param name="reader">The binary reader used to read from the raw representation of the original data message.</param>
+        </member>
+        <member name="P:PAARC.Shared.Data.ControllerInfoData.ClientVersion">
+            <summary>
+            Gets or sets the version of the PAARC library used at the client side.
+            A server should check whether the client version is the same as the expected version
+            an reject connection attempts of incompatible/outdated clients.
+            </summary>
+            <value>
+            The client version.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.Data.ControllerInfoData.IsTouchSupported">
+            <summary>
+            Gets or sets a value indicating whether the data source supports touch input.
+            This is true for all Windows Phone 7 devices.
+            </summary>
+            <value>
+            	<c>true</c> if touch input is supported; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.Data.ControllerInfoData.IsAccelerometerSupported">
+            <summary>
+            Gets or sets a value indicating whether the data source supports accelerometer input.
+            This is true for all Windows Phone 7 devices.
+            </summary>
+            <value>
+            	<c>true</c> if accelerometer iput is supported; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.Data.ControllerInfoData.IsCompassSupported">
+            <summary>
+            Gets or sets a value indicating whether the data source supports compass input.
+            This is true for all Windows Phone 7 devices.
+            </summary>
+            <value>
+            	<c>true</c> if compass input is supported; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.Data.ControllerInfoData.IsGyroscopeSupported">
+            <summary>
+            Gets or sets a value indicating whether the data source supports gyroscope input.
+            </summary>
+            <value>
+            	<c>true</c> if gyroscope input is supported; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.Data.ControllerInfoData.IsMotionSupported">
+            <summary>
+            Gets or sets a value indicating whether the data source supports using the combined motion API.
+            </summary>
+            <value>
+            	<c>true</c> if the combined motion API is supported; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.Data.ControllerInfoData.DisplayWidth">
+            <summary>
+            Gets or sets the logical display width. Since the library only supports landscape mode,
+            this is the physical display height. Typically, this value is 800.0.
+            </summary>
+            <value>
+            The logical display width.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.Data.ControllerInfoData.DisplayHeight">
+            <summary>
+            Gets or sets the logical display height. Since the library only supports landscape mode,
+            this is the physical display width. Typically, this value is 480.0.
+            </summary>
+            <value>
+            The logical display height.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.Data.ControllerInfoData.DataType">
+            <summary>
+            Returns data type <c>ControllerInfo</c>.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.ControllerInfoData.MustBeDelivered">
+            <summary>
+            Returns <c>true</c>.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.Constants">
+            <summary>
+            A collection of global constants used throughout the library.
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.Constants.ControllerVersion">
+            <summary>
+            The version of the library. This is increased every time a change in the protocol is introduced
+            and enables servers to detect connections from incompatible and outdated clients. Those connection
+            attempts should be rejected.
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.Constants.MulticastTimeout">
+            <summary>
+            The timeout used for multicast broadcasting.
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.Constants.MulticastGroupAddress">
+            <summary>
+            The multicast group address used for server discovery.
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.Constants.MulticastGroupPort">
+            <summary>
+            The multicast group port used for server discovery.
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.Constants.MulticastDiscoveryToken">
+            <summary>
+            A token used for multicast discovery to avoid conflicts with other software using the same multicast group settings.
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.Constants.MulticastMaxMessageSize">
+            <summary>
+            The maximum size of a multicast message.
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.Constants.CommunicationControlChannelPort">
+            <summary>
+            The control channel port.
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.Constants.CommunicationDataChannelPort">
+            <summary>
+            The data channel port.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.Channels.IControlChannel">
+            <summary>
+            An interface that describes a specialized channel used to transmit control commands from the server to the client.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.Channels.IChannel">
+            <summary>
+            An interface describing an abstracted communication channel between a client and server.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Channels.IChannel.ListenAsync(System.String,System.Int32)">
+            <summary>
+            Starts asynchronous listening for incoming client connections.
+            </summary>
+            <param name="localAddress">The local address used for the listening.</param>
+            <param name="port">The port used for the listening.</param>
+        </member>
+        <member name="M:PAARC.Shared.Channels.IChannel.ConnectAsync(System.String,System.Int32)">
+            <summary>
+            Starts asynchronously connecting to a remote server.
+            </summary>
+            <param name="remoteAddress">The remote address to connect to.</param>
+            <param name="remotePort">The remote port to use.</param>
+        </member>
+        <member name="M:PAARC.Shared.Channels.IChannel.Shutdown">
+            <summary>
+            Shuts down the channel.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Channels.IChannel.IsConnected">
+            <summary>
+            Gets a value indicating whether the channel is connected.
+            </summary>
+        </member>
+        <member name="E:PAARC.Shared.Channels.IChannel.Connected">
+            <summary>
+            Occurs when the channel was successfully connected to a server.
+            </summary>
+        </member>
+        <member name="E:PAARC.Shared.Channels.IChannel.ClientAccepted">
+            <summary>
+            Occurs when a client was accepted by the channel.
+            </summary>
+        </member>
+        <member name="E:PAARC.Shared.Channels.IChannel.ConnectionClosed">
+            <summary>
+            Occurs when the underlying connection was closed.
+            </summary>
+        </member>
+        <member name="E:PAARC.Shared.Channels.IChannel.Error">
+            <summary>
+            Occurs in case of an error during communication.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Channels.IControlChannel.Send(PAARC.Shared.ControlCommands.IControlCommand)">
+            <summary>
+            Sends the specified command to the client.
+            </summary>
+            <param name="command">The command to send.</param>
+        </member>
+        <member name="E:PAARC.Shared.Channels.IControlChannel.ControlCommandSent">
+            <summary>
+            Occurs when a control command was successfully sent from the server to the client, on the server side.
+            </summary>
+        </member>
+        <member name="E:PAARC.Shared.Channels.IControlChannel.ControlCommandReceived">
+            <summary>
+            Occurs when a control command was successfully received, on the client side.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.Sockets.ITcpSocketWrapper">
+            <summary>
+            An interface that describes a convenient wrapper around a low-level TCP socket.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Sockets.ITcpSocketWrapper.ListenAsync(System.String,System.Int32)">
+            <summary>
+            Starts an asnychronous listen operation for incoming client connect requests.
+            </summary>
+            <param name="localAddress">The local address to use for the listen operation.</param>
+            <param name="localPort">The local port to use for the listen operation.</param>
+        </member>
+        <member name="M:PAARC.Shared.Sockets.ITcpSocketWrapper.ConnectAsync(System.String,System.Int32)">
+            <summary>
+            Starts an asynchronous connect operation to connect to a remote server.
+            </summary>
+            <param name="remoteAddress">The remote address to connect to.</param>
+            <param name="remotePort">The remote port to use during the connection attempt.</param>
+        </member>
+        <member name="M:PAARC.Shared.Sockets.ITcpSocketWrapper.ReceiveAsync">
+            <summary>
+            Starts an asynchronous receive operation.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Sockets.ITcpSocketWrapper.SendAsync(System.Byte[])">
+            <summary>
+            Starts an asynchronous send operations
+            </summary>
+            <param name="data">The data that should be sent.</param>
+        </member>
+        <member name="M:PAARC.Shared.Sockets.ITcpSocketWrapper.Shutdown">
+            <summary>
+            Shuts down the socket.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Sockets.ITcpSocketWrapper.IsConnected">
+            <summary>
+            Gets a value indicating whether the socket is connected.
+            </summary>
+            <value>
+            	<c>true</c> if the socket is connected; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="E:PAARC.Shared.Sockets.ITcpSocketWrapper.Connected">
+            <summary>
+            Occurs when the socket was connected successfully.
+            </summary>
+        </member>
+        <member name="E:PAARC.Shared.Sockets.ITcpSocketWrapper.ConnectionClosed">
+            <summary>
+            Occurs when the connection was closed successfully.
+            </summary>
+        </member>
+        <member name="E:PAARC.Shared.Sockets.ITcpSocketWrapper.ClientAccepted">
+            <summary>
+            Occurs when a client was accepted successfully.
+            </summary>
+        </member>
+        <member name="E:PAARC.Shared.Sockets.ITcpSocketWrapper.DataSent">
+            <summary>
+            Occurs when data was sent successfully.
+            </summary>
+        </member>
+        <member name="E:PAARC.Shared.Sockets.ITcpSocketWrapper.DataReceived">
+            <summary>
+            Occurs when data was received successfully.
+            </summary>
+        </member>
+        <member name="E:PAARC.Shared.Sockets.ITcpSocketWrapper.Error">
+            <summary>
+            Occurs in any case of network errors.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.ErrorEventArgs">
+            <summary>
+            Event arguments used to transport error information.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.ErrorEventArgs.#ctor(PAARC.Shared.PhoneControllerException)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.Shared.ErrorEventArgs"/> class.
+            </summary>
+            <param name="error">The error to use.</param>
+        </member>
+        <member name="P:PAARC.Shared.ErrorEventArgs.Error">
+            <summary>
+            Gets or sets the error as <c>PhoneControllerException</c> instance.
+            </summary>
+            <value>
+            The error.
+            </value>
+        </member>
+        <member name="T:PAARC.Shared.Sockets.ClientAcceptedEventArgs">
+            <summary>
+            Event arguments that transport information about an accepted client connection.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Sockets.ClientAcceptedEventArgs.#ctor(System.String,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.Shared.Sockets.ClientAcceptedEventArgs"/> class using the given address and port of the remote client.
+            </summary>
+            <param name="remoteAddress">The remote address of the accepted client.</param>
+            <param name="remotePort">The remote port of the accepted client.</param>
+        </member>
+        <member name="P:PAARC.Shared.Sockets.ClientAcceptedEventArgs.RemoteAddress">
+            <summary>
+            Gets the remote address of the accepted client.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Sockets.ClientAcceptedEventArgs.RemotePort">
+            <summary>
+            Gets the remote port of the accepted client.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.Data.TouchPoint">
+            <summary>
+            Describes a raw touch point.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Data.TouchPoint.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.Shared.Data.TouchPoint"/> class.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Data.TouchPoint.#ctor(System.Single,System.Single)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.Shared.Data.TouchPoint"/> class for a given set of coordinates.
+            </summary>
+            <param name="x">The X coordinate.</param>
+            <param name="y">The Y coordinate.</param>
+        </member>
+        <member name="P:PAARC.Shared.Data.TouchPoint.Id">
+            <summary>
+            Gets or sets an id that can be used to identify this and related touch points.
+            If this information is not used, the <c>Id</c> has a value of zero.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.TouchPoint.Location">
+            <summary>
+            Gets or sets the location the touch event was reported at.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.TouchPoint.State">
+            <summary>
+            Gets or sets the state of the touch point.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.Data.FlickData">
+            <summary>
+            A data message that represents a flick gestures.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Data.FlickData.WriteData(System.IO.BinaryWriter)">
+            <summary>
+            Adds custom data to the raw representation of the data message.
+            </summary>
+            <param name="writer">The binary writer used to create the raw representation of the data message.</param>
+        </member>
+        <member name="M:PAARC.Shared.Data.FlickData.ReadData(System.IO.BinaryReader)">
+            <summary>
+            Reads back custom data from a raw representation of the data message.
+            </summary>
+            <param name="reader">The binary reader used to read from the raw representation of the original data message.</param>
+        </member>
+        <member name="P:PAARC.Shared.Data.FlickData.Timestamp">
+            <summary>
+            Gets or sets the timestamp the gesture was reported at.
+            </summary>
+            <value>
+            The timestamp the gesture was reported at.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.Data.FlickData.Delta">
+            <summary>
+            Gets or sets the delta linked to this flick.
+            Allows to determine the speed the gesture happened at.
+            </summary>
+            <value>
+            The delta linked to this flick gesture.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.Data.FlickData.DataType">
+            <summary>
+            Returns data type <c>Flick</c>.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.FlickData.MustBeDelivered">
+            <summary>
+            Returns <c>true</c>.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.Sockets.IUdpSocketWrapper">
+            <summary>
+            An interface that describes a convenient wrapper around a low-level UDP socket.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Sockets.IUdpSocketWrapper.Initialize(System.String,System.Int32,System.String,System.Int32)">
+            <summary>
+            Initializes the wrapper with a set of local and remote endpoint data.
+            </summary>
+            <param name="localAddress">The local address to use for receive operations.</param>
+            <param name="localPort">The local port to use for receive operations.</param>
+            <param name="remoteAddress">The remote address to use for send operations.</param>
+            <param name="remotePort">The remote port to use for send operations.</param>
+        </member>
+        <member name="M:PAARC.Shared.Sockets.IUdpSocketWrapper.ReceiveFromAsync">
+            <summary>
+            Starts an asynchronous receive operation.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Sockets.IUdpSocketWrapper.SendToAsync(System.Byte[])">
+            <summary>
+            Starts an asynchronous send operation.
+            </summary>
+            <param name="data">The data that should be sent.</param>
+        </member>
+        <member name="M:PAARC.Shared.Sockets.IUdpSocketWrapper.Shutdown">
+            <summary>
+            Shuts down the socket and cleans up resources.
+            </summary>
+        </member>
+        <member name="E:PAARC.Shared.Sockets.IUdpSocketWrapper.DataSent">
+            <summary>
+            Occurs when data was sent successfully.
+            Due to the nature of UDP, this does not mean that the data was successfully received on the other end.
+            </summary>
+        </member>
+        <member name="E:PAARC.Shared.Sockets.IUdpSocketWrapper.DataReceived">
+            <summary>
+            Occurs when data was received successfully.
+            </summary>
+        </member>
+        <member name="E:PAARC.Shared.Sockets.IUdpSocketWrapper.Error">
+            <summary>
+            Occurs in any case of network errors.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.Data.AccelerometerData">
+            <summary>
+            A data message that represents accelerometer data.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Data.AccelerometerData.WriteData(System.IO.BinaryWriter)">
+            <summary>
+            Adds custom data to the raw representation of the data message.
+            </summary>
+            <param name="writer">The binary writer used to create the raw representation of the data message.</param>
+        </member>
+        <member name="M:PAARC.Shared.Data.AccelerometerData.ReadData(System.IO.BinaryReader)">
+            <summary>
+            Reads back custom data from a raw representation of the data message.
+            </summary>
+            <param name="reader">The binary reader used to read from the raw representation of the original data message.</param>
+        </member>
+        <member name="P:PAARC.Shared.Data.AccelerometerData.X">
+            <summary>
+            Gets or sets the X coordinate of the acceleration.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.AccelerometerData.Y">
+            <summary>
+            Gets or sets the Y coordinate of the acceleration.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.AccelerometerData.Z">
+            <summary>
+            Gets or sets the Z coordinate of the acceleration.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.AccelerometerData.Timestamp">
+            <summary>
+            Gets or sets the timestamp of the data reading.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.AccelerometerData.DataType">
+            <summary>
+            Returns the data type <c>Accelerometer</c>.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.AccelerometerData.MustBeDelivered">
+            <summary>
+            Returns <c>false</c>.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.Data.TextData">
+            <summary>
+            A data message that represents text input.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Data.TextData.WriteData(System.IO.BinaryWriter)">
+            <summary>
+            Adds custom data to the raw representation of the data message.
+            </summary>
+            <param name="writer">The binary writer used to create the raw representation of the data message.</param>
+        </member>
+        <member name="M:PAARC.Shared.Data.TextData.ReadData(System.IO.BinaryReader)">
+            <summary>
+            Reads back custom data from a raw representation of the data message.
+            </summary>
+            <param name="reader">The binary reader used to read from the raw representation of the original data message.</param>
+        </member>
+        <member name="P:PAARC.Shared.Data.TextData.Text">
+            <summary>
+            Gets or sets the text or text fragment that was input.
+            If a text is longer than the maximum allowed length of a data message, it will be fragmented into 
+            several individual <c>TextData</c> messages.
+            </summary>
+            <value>
+            The text or text fragment.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.Data.TextData.DataType">
+            <summary>
+            Returns data type <c>Text</c>.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.TextData.MustBeDelivered">
+            <summary>
+            Returns <c>true</c>.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.Data.DragCompleteData">
+            <summary>
+            Represents a data message that signals completion of any of the following drag operations:
+            <c>FreeDrag</c>, <c>HorizontalDrag</c> and <c>VerticalDrag</c>.
+            </summary>
+            <remarks>Completion of the <c>CustomDrag</c> operation is reported by a different data message, in particular <c>CustomDragComplete</c>.</remarks>
+        </member>
+        <member name="M:PAARC.Shared.Data.DragCompleteData.WriteData(System.IO.BinaryWriter)">
+            <summary>
+            Adds custom data to the raw representation of the data message.
+            </summary>
+            <param name="writer">The binary writer used to create the raw representation of the data message.</param>
+        </member>
+        <member name="M:PAARC.Shared.Data.DragCompleteData.ReadData(System.IO.BinaryReader)">
+            <summary>
+            Reads back custom data from a raw representation of the data message.
+            </summary>
+            <param name="reader">The binary reader used to read from the raw representation of the original data message.</param>
+        </member>
+        <member name="P:PAARC.Shared.Data.DragCompleteData.DataType">
+            <summary>
+            Returns data type <c>DragComplete</c>.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.DragCompleteData.MustBeDelivered">
+            <summary>
+            Returns <c>true</c>.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.Data.HorizontalDragData">
+            <summary>
+            A data message that represents a horizontal drag gesture.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.Data.DragDataBase">
+            <summary>
+            A base class for all drag data messages.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Data.DragDataBase.WriteData(System.IO.BinaryWriter)">
+            <summary>
+            Adds custom drag data to the raw representation of the data message.
+            </summary>
+            <param name="writer">The binary writer used to create the raw representation of the data message.</param>
+        </member>
+        <member name="M:PAARC.Shared.Data.DragDataBase.ReadData(System.IO.BinaryReader)">
+            <summary>
+            Reads back custom drag data from a raw representation of the data message.
+            </summary>
+            <param name="reader">The binary reader used to read from the raw representation of the original data message.</param>
+        </member>
+        <member name="P:PAARC.Shared.Data.DragDataBase.Timestamp">
+            <summary>
+            Gets or sets the timestamp the data was acquired at.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.DragDataBase.TouchPoint">
+            <summary>
+            Gets or sets the touch point of the drag data.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.DragDataBase.Delta">
+            <summary>
+            Gets or sets the delta to the last reported drag touch point.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.DragDataBase.MustBeDelivered">
+            <summary>
+            Gets a value indicating whether the data message must be delivered reliably or not.
+            </summary>
+            <value>
+            	<c>true</c> if the data message must be delivered reliably; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.Data.HorizontalDragData.DataType">
+            <summary>
+            Returns data type <c>HorizontalDrag</c>.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.ControllerVersionMismatchException">
+            <summary>
+            An exception that signals that a connection request from a client was rejected due to a version mismatch.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.PhoneControllerException">
+            <summary>
+            The custom application exception type for the PAARC library.
+            Apart from fundamental exception types like <c>ArgumentException</c>,
+            <c>ArgumentNullException</c> and <c>InvalidOperationException</c>,
+            all other exceptions in the library are wrapped in this type or derived types to simplify
+            exception handling for client applications.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.PhoneControllerException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.Shared.PhoneControllerException"/> class.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.PhoneControllerException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.Shared.PhoneControllerException"/> class.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+        </member>
+        <member name="M:PAARC.Shared.PhoneControllerException.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.Shared.PhoneControllerException"/> class.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="errorCode">The error code to use.</param>
+        </member>
+        <member name="M:PAARC.Shared.PhoneControllerException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.Shared.PhoneControllerException"/> class.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.</param>
+        </member>
+        <member name="M:PAARC.Shared.PhoneControllerException.#ctor(System.String,System.Exception,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.Shared.PhoneControllerException"/> class.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.</param>
+            <param name="errorCode">The error code to use.</param>
+        </member>
+        <member name="P:PAARC.Shared.PhoneControllerException.ErrorCode">
+            <summary>
+            Gets or sets the error code, if applicable.
+            </summary>
+            <value>
+            The error code or <c>null</c> if no error code is available.
+            </value>
+        </member>
+        <member name="M:PAARC.Shared.ControllerVersionMismatchException.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.Shared.ControllerVersionMismatchException"/> class.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.ControllerVersionMismatchException.ServerVersion">
+            <summary>
+            Gets the version the server expects from connecting clients.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.ControllerVersionMismatchException.ClientVersion">
+            <summary>
+            Gets the version that was reported by the connected client.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.ControllerConfiguration">
+            <summary>
+            A data container for all possible configuration options for the phone device and client side library.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.ControllerConfiguration.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.Shared.ControllerConfiguration"/> class using default values for the configuration.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.ControllerConfiguration.Serialize(System.IO.BinaryWriter)">
+            <summary>
+            Serializes the configuration to the given binary writer.
+            </summary>
+            <param name="bw">The binary writer to use.</param>
+        </member>
+        <member name="M:PAARC.Shared.ControllerConfiguration.Deserialize(System.IO.BinaryReader)">
+            <summary>
+            Deserializes the configuration from a given binary reader.
+            </summary>
+            <param name="br">The binary reader to use.</param>
+        </member>
+        <member name="P:PAARC.Shared.ControllerConfiguration.AutoReconnectOnActivation">
+            <summary>
+            Determines whether the phone client tries to reconnect to the last known server 
+            automatically when the application is activated. A reconnect attempt is not made
+            when a new instance of the client is launched or when the client wasn't connected on deactivation.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.ControllerConfiguration.MinMillisecondsBetweenMessages">
+            <summary>
+            The minimum number of time that has to elapse between messages to be sent from the phone.
+            Setting this to zero means that the phone tries to send the messages as fast as possible
+            and immediately when they are created.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.ControllerConfiguration.MinAccelerometerDataRate">
+            <summary>
+            The rate (in milliseconds) new data is aquired from the accelerometer, if applicable.
+            The actual lower bound of this value depends on the minimum rate the hardware sensor is capable of.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.ControllerConfiguration.MinCompassDataRate">
+            <summary>
+            The rate (in milliseconds) new data is aquired from the compass, if applicable.
+            The actual lower bound of this value depends on the minimum rate the hardware sensor is capable of.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.ControllerConfiguration.MinGyroscopeDataRate">
+            <summary>
+            The rate (in milliseconds) new data is aquired from the gyroscope, if applicable.
+            The actual lower bound of this value depends on the minimum rate the hardware sensor is capable of.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.ControllerConfiguration.MinMotionDataRate">
+            <summary>
+            The rate (in milliseconds) new data is aquired from the combined motion API, if applicable.
+            The actual lower bound of this value depends on the minimum rate the hardware sensors are capable of.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.ControllerConfiguration.TouchInputMargin">
+            <summary>
+            A margin, in pixels, subtracted from the active touch area of the phone screen to make it 
+            simpler for the user to reach the touch extremes (edges) of the screen in absolute position mode,
+            and to avoid overlapping with the additional controls available for special input.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.ControllerConfiguration.EnableTracing">
+            <summary>
+            Indicates whether tracing (using NLog's LogReceiverTarget) is enabled.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.ControllerConfiguration.TracingEndpointAddress">
+            <summary>
+            The endpoint address that should be used for NLog's LogReceiverTarget when tracing is enabled.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.Sockets.IMulticastClient">
+            <summary>
+            An interface that describes a multicast client.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Sockets.IMulticastClient.DiscoverServer">
+            <summary>
+            Starts discovery of servers on the same network.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Sockets.IMulticastClient.Shutdown">
+            <summary>
+            Shuts down the multicast client.
+            </summary>
+        </member>
+        <member name="E:PAARC.Shared.Sockets.IMulticastClient.ServerDiscovered">
+            <summary>
+            Occurs when a server has been discovered.
+            </summary>
+        </member>
+        <member name="E:PAARC.Shared.Sockets.IMulticastClient.TimeoutElapsed">
+            <summary>
+            Occurs when a timeout has been detected.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.PhoneControllerStateEventArgs">
+            <summary>
+            Event arguments that transport information about state changes of a controller.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.PhoneControllerStateEventArgs.#ctor(PAARC.Shared.PhoneControllerState)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.Shared.PhoneControllerStateEventArgs"/> class.
+            </summary>
+            <param name="state">The new state of the controller.</param>
+        </member>
+        <member name="P:PAARC.Shared.PhoneControllerStateEventArgs.State">
+            <summary>
+            Gets the new state of the controller.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.Data.DataTypesChangedEventArgs">
+            <summary>
+            Event arguments that transport a collection of new data types when the number of acquired data types has changed.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Data.DataTypesChangedEventArgs.#ctor(System.Collections.Generic.IEnumerable{PAARC.Shared.DataType})">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.Shared.Data.DataTypesChangedEventArgs"/> class.
+            </summary>
+            <param name="newDataTypes">The new data types.</param>
+        </member>
+        <member name="P:PAARC.Shared.Data.DataTypesChangedEventArgs.NewDataTypes">
+            <summary>
+            Gets the new data types that are acquired by a data source.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.Data.PinchCompleteData">
+            <summary>
+            A data message that represents a completed pinch gesture.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Data.PinchCompleteData.WriteData(System.IO.BinaryWriter)">
+            <summary>
+            Adds custom data to the raw representation of the data message.
+            </summary>
+            <param name="writer">The binary writer used to create the raw representation of the data message.</param>
+        </member>
+        <member name="M:PAARC.Shared.Data.PinchCompleteData.ReadData(System.IO.BinaryReader)">
+            <summary>
+            Reads back custom data from a raw representation of the data message.
+            </summary>
+            <param name="reader">The binary reader used to read from the raw representation of the original data message.</param>
+        </member>
+        <member name="P:PAARC.Shared.Data.PinchCompleteData.DataType">
+            <summary>
+            Returns data type <c>PinchComplete</c>.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.PinchCompleteData.MustBeDelivered">
+            <summary>
+            Returns <c>true</c>.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.Data.MotionData">
+            <summary>
+            A data message that represents a reading from the combined motion API.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Data.MotionData.WriteData(System.IO.BinaryWriter)">
+            <summary>
+            Adds custom data to the raw representation of the data message.
+            </summary>
+            <param name="writer">The binary writer used to create the raw representation of the data message.</param>
+        </member>
+        <member name="M:PAARC.Shared.Data.MotionData.ReadData(System.IO.BinaryReader)">
+            <summary>
+            Reads back custom data from a raw representation of the data message.
+            </summary>
+            <param name="reader">The binary reader used to read from the raw representation of the original data message.</param>
+        </member>
+        <member name="P:PAARC.Shared.Data.MotionData.Attitude">
+            <summary>
+            Gets or sets the attitude of the reading.
+            </summary>
+            <value>
+            The attitude of the reading.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.Data.MotionData.DeviceAcceleration">
+            <summary>
+            Gets or sets the device acceleration of the reading.
+            </summary>
+            <value>
+            The device acceleration of the reading.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.Data.MotionData.DeviceRotationRate">
+            <summary>
+            Gets or sets the device rotation rate of the reading.
+            </summary>
+            <value>
+            The device rotation rate of the reading.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.Data.MotionData.Gravity">
+            <summary>
+            Gets or sets the gravity of the reading.
+            </summary>
+            <value>
+            The gravity of the reading.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.Data.MotionData.Timestamp">
+            <summary>
+            Gets or sets the timestamp the reading was reported at.
+            </summary>
+            <value>
+            The timestamp the reading was reported at.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.Data.MotionData.DataType">
+            <summary>
+            Returns data type <c>Motion</c>.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.MotionData.MustBeDelivered">
+            <summary>
+            Returns <c>false</c>.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.NetworkErrorEventArgs">
+            <summary>
+            Event arguments that transport information about network errors.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.NetworkErrorEventArgs.#ctor(System.String,System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.Shared.NetworkErrorEventArgs"/> class.
+            </summary>
+            <param name="message">The message to use.</param>
+            <param name="errorCode">The error code to use.</param>
+            <param name="error">The underlying exception, if available.</param>
+        </member>
+        <member name="P:PAARC.Shared.NetworkErrorEventArgs.Error">
+            <summary>
+            Gets or sets the underlying exception of the error, if applicable.
+            </summary>
+            <value>
+            The exception object or <c>null</c> if no exception happened.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.NetworkErrorEventArgs.Message">
+            <summary>
+            Gets or sets the error message.
+            </summary>
+            <value>
+            The error message.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.NetworkErrorEventArgs.ErrorCode">
+            <summary>
+            Gets or sets the error code, for example a socket error, if applicable.
+            </summary>
+            <value>
+            The error code or <c>null</c> if no error code is available.
+            </value>
+        </member>
+        <member name="T:PAARC.Shared.Data.PinchData">
+            <summary>
+            A data message that represents a pinch gesture.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Data.PinchData.WriteData(System.IO.BinaryWriter)">
+            <summary>
+            Adds custom data to the raw representation of the data message.
+            </summary>
+            <param name="writer">The binary writer used to create the raw representation of the data message.</param>
+        </member>
+        <member name="M:PAARC.Shared.Data.PinchData.ReadData(System.IO.BinaryReader)">
+            <summary>
+            Reads back custom data from a raw representation of the data message.
+            </summary>
+            <param name="reader">The binary reader used to read from the raw representation of the original data message.</param>
+        </member>
+        <member name="P:PAARC.Shared.Data.PinchData.Timestamp">
+            <summary>
+            Gets or sets the timestamp the gesture was reported at.
+            </summary>
+            <value>
+            The timestamp the gesture was reported at.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.Data.PinchData.TouchPoint">
+            <summary>
+            Gets or sets the first touch point of the gesture.
+            </summary>
+            <value>
+            The first touch point.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.Data.PinchData.TouchPoint2">
+            <summary>
+            Gets or sets the second touch point of the gesture.
+            </summary>
+            <value>
+            The second touch point.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.Data.PinchData.Delta">
+            <summary>
+            Gets or sets the first delta value of the gesture.
+            </summary>
+            <value>
+            The first delta value.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.Data.PinchData.Delta2">
+            <summary>
+            Gets or sets the second delta value of the gesture.
+            </summary>
+            <value>
+            The second delta value.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.Data.PinchData.DataType">
+            <summary>
+            Returns data type <c>Pinch</c>.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.PinchData.MustBeDelivered">
+            <summary>
+            Returns <c>false</c>.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.Data.Matrix">
+            <summary>
+            A matrix data container class,
+            necessary to overcome the limitations of portable class libraries.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.Matrix.M11">
+            <summary>
+            Gets or sets data element M11.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.Matrix.M12">
+            <summary>
+            Gets or sets data element M12.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.Matrix.M13">
+            <summary>
+            Gets or sets data element M13.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.Matrix.M14">
+            <summary>
+            Gets or sets data element M14.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.Matrix.M21">
+            <summary>
+            Gets or sets data element M21.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.Matrix.M22">
+            <summary>
+            Gets or sets data element M22.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.Matrix.M23">
+            <summary>
+            Gets or sets data element M23.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.Matrix.M24">
+            <summary>
+            Gets or sets data element M24.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.Matrix.M31">
+            <summary>
+            Gets or sets data element M31.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.Matrix.M32">
+            <summary>
+            Gets or sets data element M32.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.Matrix.M33">
+            <summary>
+            Gets or sets data element M33.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.Matrix.M34">
+            <summary>
+            Gets or sets data element M34.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.Matrix.M41">
+            <summary>
+            Gets or sets data element M41.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.Matrix.M42">
+            <summary>
+            Gets or sets data element M42.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.Matrix.M43">
+            <summary>
+            Gets or sets data element M43.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.Matrix.M44">
+            <summary>
+            Gets or sets data element M44.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.Channels.ControlCommandReceivedEventArgs">
+            <summary>
+            Event arguments for <c>ControlCommandReceived</c> events.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Channels.ControlCommandReceivedEventArgs.#ctor(PAARC.Shared.ControlCommands.IControlCommand)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.Shared.Channels.ControlCommandReceivedEventArgs"/> class.
+            </summary>
+            <param name="controlCommand">The control command that was received.</param>
+        </member>
+        <member name="P:PAARC.Shared.Channels.ControlCommandReceivedEventArgs.ControlCommand">
+            <summary>
+            Gets the control command that was received.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.Data.DataMessageEventArgs">
+            <summary>
+            Event arguments to transport a <c>DataMessage</c>.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Data.DataMessageEventArgs.#ctor(PAARC.Shared.Data.IDataMessage)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.Shared.Data.DataMessageEventArgs"/> class.
+            </summary>
+            <param name="dataMessage">The data message.</param>
+        </member>
+        <member name="P:PAARC.Shared.Data.DataMessageEventArgs.DataMessage">
+            <summary>
+            Gets the data message contained in the event arguments.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.ControlCommands.ControlCommand">
+            <summary>
+            Describes a command that is sent from the server to control data acquisition on the client.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.ControlCommands.IControlCommand">
+            <summary>
+            An interface that describes a control command which can be sent from the server to the client.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.ControlCommands.IControlCommand.ToByteArray">
+            <summary>
+            Creates a raw byte array representation of the command.
+            </summary>
+            <returns>A byte array containing a raw representation of the command.</returns>
+        </member>
+        <member name="P:PAARC.Shared.ControlCommands.IControlCommand.Length">
+            <summary>
+            Gets or sets the total length of the command, in bytes.
+            </summary>
+            <value>
+            The length of the command in bytes.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.ControlCommands.IControlCommand.DataType">
+            <summary>
+            Gets the type of the data.
+            </summary>
+            <value>
+            The type of the data.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.ControlCommands.IControlCommand.Action">
+            <summary>
+            Gets the action that should be performed for the given data type.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.ControlCommands.ControlCommand.ToByteArray">
+            <summary>
+            Creates a raw byte array representation of the command.
+            </summary>
+            <returns>
+            A byte array containing a raw representation of the command.
+            </returns>
+        </member>
+        <member name="M:PAARC.Shared.ControlCommands.ControlCommand.#ctor(PAARC.Shared.DataType,PAARC.Shared.ControlCommands.ControlCommandAction)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.Shared.ControlCommands.ControlCommand"/> class.
+            </summary>
+            <param name="dataType">Type of the data the command controls.</param>
+            <param name="action">The action to perform, either <c>Start</c> or <c>Stop</c>.</param>
+        </member>
+        <member name="M:PAARC.Shared.ControlCommands.ControlCommand.WriteData(System.IO.BinaryWriter)">
+            <summary>
+            If overwritten by a derived class, adds additional custom data to the raw representation of the command.
+            </summary>
+            <param name="bw">The binary writer used to write the raw represenation of the command.</param>
+        </member>
+        <member name="M:PAARC.Shared.ControlCommands.ControlCommand.ReadData(System.IO.BinaryReader)">
+            <summary>
+            If overwritten by a derived class, reads back a raw command representation.
+            </summary>
+            <param name="br">The binary reader used to read the raw command representation.</param>
+        </member>
+        <member name="P:PAARC.Shared.ControlCommands.ControlCommand.Length">
+            <summary>
+            Gets or sets the total length of the command, in bytes.
+            </summary>
+            <value>
+            The length of the command in bytes.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.ControlCommands.ControlCommand.DataType">
+            <summary>
+            Gets the type of the data.
+            </summary>
+            <value>
+            The type of the data.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.ControlCommands.ControlCommand.Action">
+            <summary>
+            Gets the action that should be performed for the given data type.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.Data.Thickness">
+            <summary>
+            A thickness data container class,
+            necessary to overcome the limitations of portable class libraries.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Data.Thickness.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.Shared.Data.Thickness"/> class.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Data.Thickness.#ctor(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.Shared.Data.Thickness"/> class for a given set of thickness amounts.
+            </summary>
+            <param name="left">The amount of thickness at the left side.</param>
+            <param name="top">The amount of thickness at the top side.</param>
+            <param name="right">The amount of thickness at the right side.</param>
+            <param name="bottom">The amount of thickness at the bottom side.</param>
+        </member>
+        <member name="P:PAARC.Shared.Data.Thickness.Left">
+            <summary>
+            Gets or sets the thickness amount at the left side.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.Thickness.Top">
+            <summary>
+            Gets or sets the thickness amount at the top side.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.Thickness.Right">
+            <summary>
+            Gets or sets the thickness amount at the right side.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.Thickness.Bottom">
+            <summary>
+            Gets or sets the thickness amount at the bottom side.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.Data.IDataSource">
+            <summary>
+            Describes a data source that is able to acquire various data types.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Data.IDataSource.StartAcquisition(PAARC.Shared.DataType)">
+            <summary>
+            Starts acquisition of a certain data type.
+            </summary>
+            <param name="dataType">The type of data to start acquisition for.</param>
+        </member>
+        <member name="M:PAARC.Shared.Data.IDataSource.StopAcquisition(PAARC.Shared.DataType)">
+            <summary>
+            Stops acquisition of a certain data type.
+            </summary>
+            <param name="dataType">The type of the data to stop acquisition for.</param>
+        </member>
+        <member name="M:PAARC.Shared.Data.IDataSource.PauseAcquisition(PAARC.Shared.DataType)">
+            <summary>
+            Pauses acquisition of a certain data type.
+            </summary>
+            <param name="dataType">The type of the data to pause the acquisition for.</param>
+        </member>
+        <member name="M:PAARC.Shared.Data.IDataSource.ResumeAcquisition(PAARC.Shared.DataType)">
+            <summary>
+            Resumes acquisition of a certain data type.
+            </summary>
+            <param name="dataType">The type of data to resume the acquisition for.</param>
+        </member>
+        <member name="M:PAARC.Shared.Data.IDataSource.Shutdown">
+            <summary>
+            Shuts down the data source and cleans up all resources.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Data.IDataSource.GetActiveDataTypes">
+            <summary>
+            Gets the currently active data types, including the paused data types.
+            </summary>
+            <returns>A collection of the data types that are currently set to be acquired, including the paused data types.</returns>
+        </member>
+        <member name="M:PAARC.Shared.Data.IDataSource.GetPausedDataTypes">
+            <summary>
+            Gets the paused data types only.
+            </summary>
+            <returns>A collection containing the currently paused data types.</returns>
+        </member>
+        <member name="M:PAARC.Shared.Data.IDataSource.GetControllerInfoData">
+            <summary>
+            Gets capabilities information about the device used for data acquisition.
+            </summary>
+            <returns>A <c>ControllerInfoData</c> object that contains the capabilities information of the device.</returns>
+        </member>
+        <member name="M:PAARC.Shared.Data.IDataSource.Configure(PAARC.Shared.ControllerConfiguration)">
+            <summary>
+            Configures the data acquisition with the specified configuration.
+            </summary>
+            <param name="configuration">The configuration to use.</param>
+        </member>
+        <member name="M:PAARC.Shared.Data.IDataSource.AddData(PAARC.Shared.Data.DataMessage)">
+            <summary>
+            Manually adds new data to the data source to be reported to consumers.
+            This is mandatory for certain data types like <c>Text</c> which cannot be acquired automatically.
+            </summary>
+            <param name="dataMessage">The data message to be reported to consumers of the data source.</param>
+        </member>
+        <member name="E:PAARC.Shared.Data.IDataSource.DataAcquired">
+            <summary>
+            Occurs when new data was acquired.
+            </summary>
+        </member>
+        <member name="E:PAARC.Shared.Data.IDataSource.DataTypesChanged">
+            <summary>
+            Occurs when the active data types have changed.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.Data.DataMessageFactory">
+            <summary>
+            Creates data messages from raw representations.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Data.DataMessageFactory.CreateFromRawMessage(System.Byte[])">
+            <summary>
+            Creates a data message from raw message data.
+            </summary>
+            <param name="rawMessage">The raw message data.</param>
+            <returns>A data message of correct type, recreated from the raw data.</returns>
+        </member>
+        <member name="M:PAARC.Shared.Data.DataMessageFactory.CreateFromRawMessage(System.Byte[],System.Int32)">
+            <summary>
+            Creates a data message from raw message data, starting at a given offset in the raw data.
+            </summary>
+            <param name="rawMessage">The raw message data.</param>
+            <param name="start">The index the recreation of the data message should be started at.</param>
+            <returns>A data message of correct type, recreated from the raw data.</returns>
+        </member>
+        <member name="T:PAARC.Shared.Data.Vector3">
+            <summary>
+            A simple three-dimensional vector data container class,
+            necessary to overcome the limitations of portable class libraries.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Data.Vector3.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.Shared.Data.Vector3"/> class.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Data.Vector3.#ctor(System.Single,System.Single,System.Single)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.Shared.Data.Vector3"/> class.
+            </summary>
+            <param name="x">The X coordinate.</param>
+            <param name="y">The Y coordinate.</param>
+            <param name="z">The Z coordinate.</param>
+        </member>
+        <member name="P:PAARC.Shared.Data.Vector3.X">
+            <summary>
+            Gets or sets the X coordinate.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.Vector3.Y">
+            <summary>
+            Gets or sets the Y coordinate.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.Vector3.Z">
+            <summary>
+            Gets or sets the Z coordinate.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.ControlCommands.ControlCommandAction">
+            <summary>
+            The type of action the control command describes.
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.ControlCommands.ControlCommandAction.None">
+            <summary>
+            No command action, used only for configuration commands.
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.ControlCommands.ControlCommandAction.Start">
+            <summary>
+            Start command action, triggers acquisition of a certain data type.
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.ControlCommands.ControlCommandAction.Stop">
+            <summary>
+            Stop command action, stops acquisition of a certain data type.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.Channels.IDataChannel">
+            <summary>
+            An interface that describes a specialized channel to send acquired data from the client to the server.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Channels.IDataChannel.Send(PAARC.Shared.Data.IDataMessage)">
+            <summary>
+            Sends the specified data message to the server.
+            </summary>
+            <param name="data">The data message to send.</param>
+        </member>
+        <member name="M:PAARC.Shared.Channels.IDataChannel.PurgeFromQueue(PAARC.Shared.DataType)">
+            <summary>
+            Purges a specific type of data messages from the send queue.
+            </summary>
+            <param name="dataType">The type of the data to purge from the send queue.</param>
+        </member>
+        <member name="P:PAARC.Shared.Channels.IDataChannel.MinMillisecondsBetweenMessages">
+            <summary>
+            Gets or sets the minimum number of milliseconds between messages.
+            Messages are delayed by the amount given here if necessary.
+            </summary>
+            <value>
+            The minimum number of milliseconds between messages.
+            </value>
+        </member>
+        <member name="E:PAARC.Shared.Channels.IDataChannel.DataMessageReceived">
+            <summary>
+            Occurs when a data message was successfully received, on the server side.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.Sockets.DataReceivedEventArgs">
+            <summary>
+            Event arguments used to transport received raw data.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Sockets.DataReceivedEventArgs.#ctor(System.Byte[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.Shared.Sockets.DataReceivedEventArgs"/> class.
+            </summary>
+            <param name="data">The received raw data.</param>
+        </member>
+        <member name="P:PAARC.Shared.Sockets.DataReceivedEventArgs.Data">
+            <summary>
+            Gets or sets the received raw data.
+            </summary>
+            <value>
+            The received raw data.
+            </value>
+        </member>
+        <member name="T:PAARC.Shared.Data.Vector2">
+            <summary>
+            A simple two-dimensional vector data container class,
+            necessary to overcome the limitations of portable class libraries.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Data.Vector2.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.Shared.Data.Vector2"/> class.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Data.Vector2.#ctor(System.Single,System.Single)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.Shared.Data.Vector2"/> class.
+            </summary>
+            <param name="x">The X coordinate.</param>
+            <param name="y">The Y coordinate.</param>
+        </member>
+        <member name="P:PAARC.Shared.Data.Vector2.X">
+            <summary>
+            Gets or sets the X coordinate.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.Vector2.Y">
+            <summary>
+            Gets or sets the Y coordinate.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.Data.TouchData">
+            <summary>
+            A data message that represents raw touch input.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Data.TouchData.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.Shared.Data.TouchData"/> class.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Data.TouchData.#ctor(System.Collections.Generic.IEnumerable{PAARC.Shared.Data.TouchPoint})">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.Shared.Data.TouchData"/> class using a given set of touch points.
+            </summary>
+            <param name="touchPoints">The touch points to use.</param>
+        </member>
+        <member name="M:PAARC.Shared.Data.TouchData.WriteData(System.IO.BinaryWriter)">
+            <summary>
+            Adds custom data to the raw representation of the data message.
+            </summary>
+            <param name="writer">The binary writer used to create the raw representation of the data message.</param>
+        </member>
+        <member name="M:PAARC.Shared.Data.TouchData.ReadData(System.IO.BinaryReader)">
+            <summary>
+            Reads back custom data from a raw representation of the data message.
+            </summary>
+            <param name="reader">The binary reader used to read from the raw representation of the original data message.</param>
+        </member>
+        <member name="P:PAARC.Shared.Data.TouchData.TouchPoints">
+            <summary>
+            Gets the list of touch points associated with this raw touch input reading.
+            Typically, this can be up to four touch points on today's devices.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.TouchData.DataType">
+            <summary>
+            Returns data type <c>Touch</c>.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.TouchData.MustBeDelivered">
+            <summary>
+            Returns <c>false</c>.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.Data.CustomDragData">
+            <summary>
+            Represents a data message that transports custom drag data.
+            </summary>
+            <remarks>
+            Custom drag data basically is the same as normal raw touch data, but the consuming side 
+            can conveniently use this for dragging logic. The differentiation between custom drag data
+            and the built-in drag modes like <c>FreeDrag</c> has been made to enable "relative" dragging,
+            which means a drag mode that allows the user to lift their fingers and continue dragging in
+            another spot of the touch area without the drag operation to be automatically completed.
+            </remarks>
+        </member>
+        <member name="P:PAARC.Shared.Data.CustomDragData.DataType">
+            <summary>
+            Returns data type <c>CustomDrag</c>.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.CustomDragData.MustBeDelivered">
+            <summary>
+            Returns <c>true</c>.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.Data.CompassData">
+            <summary>
+            A data message that represents compass data.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Data.CompassData.WriteData(System.IO.BinaryWriter)">
+            <summary>
+            Adds custom data to the raw representation of the data message.
+            </summary>
+            <param name="writer">The binary writer used to create the raw representation of the data message.</param>
+        </member>
+        <member name="M:PAARC.Shared.Data.CompassData.ReadData(System.IO.BinaryReader)">
+            <summary>
+            Reads back custom data from a raw representation of the data message.
+            </summary>
+            <param name="reader">The binary reader used to read from the raw representation of the original data message.</param>
+        </member>
+        <member name="P:PAARC.Shared.Data.CompassData.HeadingAccuracy">
+            <summary>
+            Gets or sets the heading accuracy.
+            </summary>
+            <value>
+            The heading accuracy.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.Data.CompassData.MagneticHeading">
+            <summary>
+            Gets or sets the magnetic heading.
+            </summary>
+            <value>
+            The magnetic heading.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.Data.CompassData.MagnetometerReading">
+            <summary>
+            Gets or sets the magnetometer reading.
+            </summary>
+            <value>
+            The magnetometer reading.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.Data.CompassData.Timestamp">
+            <summary>
+            Gets or sets the timestamp of the reading.
+            </summary>
+            <value>
+            The timestamp of the reading.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.Data.CompassData.TrueHeading">
+            <summary>
+            Gets or sets the true heading.
+            </summary>
+            <value>
+            The true heading.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.Data.CompassData.DataType">
+            <summary>
+            Returns data type <c>Compass</c>.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.CompassData.MustBeDelivered">
+            <summary>
+            Returns <c>false</c>.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.ControlCommands.ControlCommandFactory">
+            <summary>
+            Used to create control command implementations from given <c>DataType</c> and <c>ControlCommandAction</c> combinations,
+            or from raw control command representations.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.ControlCommands.ControlCommandFactory.CreateFromRawCommand(System.Byte[])">
+            <summary>
+            Creates a control command from raw data.
+            </summary>
+            <param name="rawCommand">The raw control command data.</param>
+            <returns>A control command that contains the information from the raw representation</returns>
+        </member>
+        <member name="M:PAARC.Shared.ControlCommands.ControlCommandFactory.CreateFromRawCommand(System.Byte[],System.Int32)">
+            <summary>
+            Creates a control command from raw data, starting at a certain offset in the raw data.
+            </summary>
+            <param name="rawCommand">The raw control command data.</param>
+            <param name="startIndex">The start index to extract a control command at.</param>
+            <returns>A control command that contains the information from the raw representation</returns>
+        </member>
+        <member name="M:PAARC.Shared.ControlCommands.ControlCommandFactory.CreateCommand(PAARC.Shared.DataType,PAARC.Shared.ControlCommands.ControlCommandAction)">
+            <summary>
+            Creates a control command from the give data type and action.
+            </summary>
+            <param name="dataType">Type of the data.</param>
+            <param name="action">The action. Ignored if a data type of <c>Configuration</c> is used.</param>
+            <returns>A control command for the given data type and action.</returns>
+        </member>
+        <member name="M:PAARC.Shared.ControlCommands.ControlCommandFactory.CreateConfigurationCommand">
+            <summary>
+            A convenient method to create a configuration control command.
+            </summary>
+            <returns>A control command of type <c>ConfigurationControlCommand</c>.</returns>
+        </member>
+        <member name="T:PAARC.Shared.Data.TouchPointState">
+            <summary>
+            The possible states of a touch point.
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.Data.TouchPointState.Invalid">
+            <summary>
+            The touch point is invalid and should be ignored.
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.Data.TouchPointState.Moved">
+            <summary>
+            The touch point is a follow-up touch point that belongs to a series of related touch events.
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.Data.TouchPointState.Pressed">
+            <summary>
+            The touch point is the initial touch event for a potential series of upcoming touch events.
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.Data.TouchPointState.Released">
+            <summary>
+            The touch point is the last touch point in a series of touch events.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.Data.CustomDragCompleteData">
+            <summary>
+            A data message that represents completion of a custom drag gesture.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Data.CustomDragCompleteData.WriteData(System.IO.BinaryWriter)">
+            <summary>
+            Adds custom data to the raw representation of the data message.
+            </summary>
+            <param name="writer">The binary writer used to create the raw representation of the data message.</param>
+        </member>
+        <member name="M:PAARC.Shared.Data.CustomDragCompleteData.ReadData(System.IO.BinaryReader)">
+            <summary>
+            Reads back custom data from a raw representation of the data message.
+            </summary>
+            <param name="reader">The binary reader used to read from the raw representation of the original data message.</param>
+        </member>
+        <member name="P:PAARC.Shared.Data.CustomDragCompleteData.DataType">
+            <summary>
+            Returns data type <c>CustomDragComplete</c>.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.CustomDragCompleteData.MustBeDelivered">
+            <summary>
+            Returns <c>true</c>.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.ICommunicationFactory">
+            <summary>
+            An interface that describes a factory which can be used to create basic implementations of the communication layer.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.ICommunicationFactory.CreateTcpSocket">
+            <summary>
+            Creates a TCP socket wrapper implementation.
+            </summary>
+            <returns>An implementation of the TCP socket wrapper interface.</returns>
+        </member>
+        <member name="M:PAARC.Shared.ICommunicationFactory.CreateUdpSocket">
+            <summary>
+            Creates a UDP socket wrapper implementation.
+            </summary>
+            <returns>An implementation of the UDP socket wrapper interface.</returns>
+        </member>
+        <member name="M:PAARC.Shared.ICommunicationFactory.CreateDataChannel">
+            <summary>
+            Creates a data channel implementation.
+            </summary>
+            <returns>An implementation of the data channel interface.</returns>
+        </member>
+        <member name="M:PAARC.Shared.ICommunicationFactory.CreateControlChannel">
+            <summary>
+            Creates a control channel implementation.
+            </summary>
+            <returns>An implementation of the control channel interface.</returns>
+        </member>
+        <member name="T:PAARC.Shared.Data.DoubleTapData">
+            <summary>
+            A data message that represents a double-tap gesture.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Data.DoubleTapData.WriteData(System.IO.BinaryWriter)">
+            <summary>
+            Adds custom data to the raw representation of the data message.
+            </summary>
+            <param name="writer">The binary writer used to create the raw representation of the data message.</param>
+        </member>
+        <member name="M:PAARC.Shared.Data.DoubleTapData.ReadData(System.IO.BinaryReader)">
+            <summary>
+            Reads back custom data from a raw representation of the data message.
+            </summary>
+            <param name="reader">The binary reader used to read from the raw representation of the original data message.</param>
+        </member>
+        <member name="P:PAARC.Shared.Data.DoubleTapData.Timestamp">
+            <summary>
+            Gets or sets the timestamp the gesture was reported at.
+            </summary>
+            <value>
+            The timestamp.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.Data.DoubleTapData.TouchPoint">
+            <summary>
+            Gets or sets the touch point the gesture happened at.
+            </summary>
+            <value>
+            The touch point.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.Data.DoubleTapData.DataType">
+            <summary>
+            Returns data type <c>DoubleTap</c>.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.DoubleTapData.MustBeDelivered">
+            <summary>
+            Returns <c>true</c>.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.Data.GyroscopeData">
+            <summary>
+            A data message that represents a gyroscope reading.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Data.GyroscopeData.WriteData(System.IO.BinaryWriter)">
+            <summary>
+            Adds custom data to the raw representation of the data message.
+            </summary>
+            <param name="writer">The binary writer used to create the raw representation of the data message.</param>
+        </member>
+        <member name="M:PAARC.Shared.Data.GyroscopeData.ReadData(System.IO.BinaryReader)">
+            <summary>
+            Reads back custom data from a raw representation of the data message.
+            </summary>
+            <param name="reader">The binary reader used to read from the raw representation of the original data message.</param>
+        </member>
+        <member name="P:PAARC.Shared.Data.GyroscopeData.RotationRate">
+            <summary>
+            Gets or sets the rotation rate of the reading.
+            </summary>
+            <value>
+            The rotation rate of the reading.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.Data.GyroscopeData.Timestamp">
+            <summary>
+            Gets or sets the timestamp the reading was reported at.
+            </summary>
+            <value>
+            The timestamp the reading was reported at.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.Data.GyroscopeData.DataType">
+            <summary>
+            Returns data type <c>Gyroscope</c>.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.GyroscopeData.MustBeDelivered">
+            <summary>
+            Returns <c>false</c>.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.Sockets.ServerDiscoveredEventArgs">
+            <summary>
+            Event arguments that transport information about a discovered server on the same network.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Sockets.ServerDiscoveredEventArgs.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.Shared.Sockets.ServerDiscoveredEventArgs"/> class using a given server address.
+            </summary>
+            <param name="remoteAddress">The server address.</param>
+        </member>
+        <member name="P:PAARC.Shared.Sockets.ServerDiscoveredEventArgs.RemoteAddress">
+            <summary>
+            Gets or sets the address of the discovered server.
+            </summary>
+            <value>
+            The address of the discovered server.
+            </value>
+        </member>
+        <member name="T:PAARC.Shared.Data.HoldData">
+            <summary>
+            A data message that represents a hold gesture.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Data.HoldData.WriteData(System.IO.BinaryWriter)">
+            <summary>
+            Adds custom data to the raw representation of the data message.
+            </summary>
+            <param name="writer">The binary writer used to create the raw representation of the data message.</param>
+        </member>
+        <member name="M:PAARC.Shared.Data.HoldData.ReadData(System.IO.BinaryReader)">
+            <summary>
+            Reads back custom data from a raw representation of the data message.
+            </summary>
+            <param name="reader">The binary reader used to read from the raw representation of the original data message.</param>
+        </member>
+        <member name="P:PAARC.Shared.Data.HoldData.Timestamp">
+            <summary>
+            Gets or sets the timestamp the gesture was reported at.
+            </summary>
+            <value>
+            The timestamp the gesture was reported at.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.Data.HoldData.TouchPoint">
+            <summary>
+            Gets or sets the touch point the gesture happened at.
+            </summary>
+            <value>
+            The touch point the gesture happened at.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.Data.HoldData.DataType">
+            <summary>
+            Returns data type <c>Hold</c>.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.HoldData.MustBeDelivered">
+            <summary>
+            Returns <c>true</c>.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.Data.VerticalDragData">
+            <summary>
+            A data message that represents a vertical drag gesture.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.VerticalDragData.DataType">
+            <summary>
+            Returns data type <c>VerticalDrag</c>.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.Data.FreeDragData">
+            <summary>
+            A data message that represents a free drag gesture.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.FreeDragData.DataType">
+            <summary>
+            Returns data type <c>FreeDrag</c>.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.Data.AttitudeReading">
+            <summary>
+            A attitude reading data container class,
+            necessary to overcome the limitations of portable class libraries.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.AttitudeReading.Pitch">
+            <summary>
+            Gets or sets the pitch value.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.AttitudeReading.Quaternion">
+            <summary>
+            Gets or sets the quaternion.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.AttitudeReading.Roll">
+            <summary>
+            Gets or sets the roll value.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.AttitudeReading.RotationMatrix">
+            <summary>
+            Gets or sets the rotation matrix.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.AttitudeReading.TimeStamp">
+            <summary>
+            Gets or sets the time stamp of the reading.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.AttitudeReading.Yaw">
+            <summary>
+            Gets or sets the yaw value.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.ControlCommands.ConfigurationControlCommand">
+            <summary>
+            A special control command used to transport configuration information from the server to the client.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.ControlCommands.ConfigurationControlCommand.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:PAARC.Shared.ControlCommands.ConfigurationControlCommand"/> class.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.ControlCommands.ConfigurationControlCommand.WriteData(System.IO.BinaryWriter)">
+            <summary>
+            Adds custom configuration data to the raw representation of the command.
+            </summary>
+            <param name="bw">The binary writer used to write the raw represenation of the command.</param>
+        </member>
+        <member name="M:PAARC.Shared.ControlCommands.ConfigurationControlCommand.ReadData(System.IO.BinaryReader)">
+            <summary>
+            Reads back the custom configuration data from the raw command representation.
+            </summary>
+            <param name="br">The binary reader used to read the raw command representation.</param>
+        </member>
+        <member name="P:PAARC.Shared.ControlCommands.ConfigurationControlCommand.Configuration">
+            <summary>
+            Gets or sets the configuration that is send from the server to the client..
+            </summary>
+            <value>
+            The configuration.
+            </value>
+        </member>
+        <member name="T:PAARC.Shared.DataType">
+            <summary>
+            The possible data types for data acquisition on the phone.
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.DataType.ControllerInfo">
+            <summary>
+            Basic controller information (capabilities).
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.DataType.Configuration">
+            <summary>
+            Configuration information for the client-side library.
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.DataType.Accelerometer">
+            <summary>
+            Accelerometer data.
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.DataType.Compass">
+            <summary>
+            Compass data.
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.DataType.Gyroscope">
+            <summary>
+            Gyroscope data.
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.DataType.Motion">
+            <summary>
+            Combined motion API data.
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.DataType.Touch">
+            <summary>
+            Raw (multi-)touch data.
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.DataType.Tap">
+            <summary>
+            A tap gesture.
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.DataType.DoubleTap">
+            <summary>
+            A double-tap gesture.
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.DataType.Hold">
+            <summary>
+            A hold gesture.
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.DataType.Flick">
+            <summary>
+            A flick gesture.
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.DataType.FreeDrag">
+            <summary>
+            An ongoing free-drag gesture.
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.DataType.HorizontalDrag">
+            <summary>
+            An ongoing horizontal drag gesture.
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.DataType.VerticalDrag">
+            <summary>
+            An ongoing vertical drag gesture.
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.DataType.DragComplete">
+            <summary>
+            Completion of a <c>FreeDrag</c>, <c>HorizontalDrag</c> or <c>VerticalDrag</c> gesture.
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.DataType.CustomDrag">
+            <summary>
+            An ongoing custom drag gesture.
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.DataType.CustomDragComplete">
+            <summary>
+            Completion of a <c>CustomDrag</c> gesture.
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.DataType.Pinch">
+            <summary>
+            An ongoing pinch gesture.
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.DataType.PinchComplete">
+            <summary>
+            Completion of a <c>Pinch</c> gesture.
+            </summary>
+        </member>
+        <member name="F:PAARC.Shared.DataType.Text">
+            <summary>
+            Text data.
+            </summary>
+        </member>
+        <member name="T:PAARC.Shared.Data.TapData">
+            <summary>
+            A data message that represents a tap gesture.
+            </summary>
+        </member>
+        <member name="M:PAARC.Shared.Data.TapData.WriteData(System.IO.BinaryWriter)">
+            <summary>Adds custom data to the raw representation of the data message.
+            </summary>
+            <param name="writer">The binary writer used to create the raw representation of the data message.</param>
+        </member>
+        <member name="M:PAARC.Shared.Data.TapData.ReadData(System.IO.BinaryReader)">
+            <summary>
+            Reads back custom data from a raw representation of the data message.
+            </summary>
+            <param name="reader">The binary reader used to read from the raw representation of the original data message.</param>
+        </member>
+        <member name="P:PAARC.Shared.Data.TapData.Timestamp">
+            <summary>
+            Gets or sets the timestamp the gesture was reported at.
+            </summary>
+            <value>
+            The timestamp the gesture was reported at.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.Data.TapData.TouchPoint">
+            <summary>
+            Gets or sets the touch point the gesture happened at.
+            </summary>
+            <value>
+            The touch point the gesture happened at.
+            </value>
+        </member>
+        <member name="P:PAARC.Shared.Data.TapData.DataType">
+            <summary>
+            Returns data type <c>Tap</c>.
+            </summary>
+        </member>
+        <member name="P:PAARC.Shared.Data.TapData.MustBeDelivered">
+            <summary>
+            Returns <c>true</c>.
+            </summary>
+        </member>
+    </members>
+</doc>

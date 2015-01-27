@@ -1,0 +1,11 @@
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\PAARC.ClientCommunication\Bin\Debug\PAARC.ClientCommunication.dll
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\PAARC.ClientCommunication\Bin\Debug\PAARC.ClientCommunication.pdb
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\PAARC.ClientCommunication\Bin\Debug\NLog.dll
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\PAARC.ClientCommunication\Bin\Debug\PAARC.Shared.dll
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\PAARC.ClientCommunication\Bin\Debug\PAARC.Shared.pdb
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\PAARC.ClientCommunication\Bin\Debug\PAARC.Shared.xml
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\PAARC.ClientCommunication\Bin\Debug\NLog.xml
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\PAARC.ClientCommunication\obj\Debug\PAARC.ClientCommunication.dll
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\PAARC.ClientCommunication\obj\Debug\PAARC.ClientCommunication.pdb
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\PAARC.ClientCommunication\Bin\Debug\PAARC.ClientCommunication.xml
+C:\Users\Codinpsycho\Desktop\Project D\PAARC_0.9_src\PAARC.ClientCommunication\obj\Debug\PAARC.ClientCommunication.csprojResolveAssemblyReference.cache
